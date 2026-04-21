@@ -1,6 +1,6 @@
+let score = 0;
 let numberArray = 1;
-let userPrompt = prompt("Please enter your name:");
-let userPromptFinal = userPrompt.toLowerCase();
+let userPromptFinal = prompt("Please enter your name:");
 let sentences = [];
 let openings = [
   "The arguments you gave were interesting, but now your judgement will be decided.",
@@ -295,22 +295,36 @@ const keywords = {
   murder: false,
 };
 
+userPromptFinal = userPromptFinal.toLowerCase();
+userPromptFinal = userPromptFinal.replace(
+  /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
+  "",
+);
+
+//split into words
+textArray = userPromptFinal.split(" ");
+
+textArray = textArray.filter(function (el) {
+  return !fluffWords.includes(el);
+});
+
+console.log(textArray);
+
+userPromptFinal = textArray.join(" ");
+//check for keywords and turn to true
 for (const word in keywords) {
   if (userPromptFinal.includes(word)) {
     keywords[word] = true;
   }
 }
 
-sentences[0] = openings[Math.floor(Math.random() * openings.length)];
+sentences.push(openings[Math.floor(Math.random() * openings.length)]);
 
+//further sentences:
 if (keywords.alibi == true && keywords.murder == false)
-  sentences[numberArray] = "Hello my name is joe bartolo joe";
-else sentences[numberArray] = "Hello my name is joe bartolo john";
-
-if (keywords.murder == true) {
-  console.log("I see you pointed out the murder.");
-}
+  sentences.push("Hello my name is joe bartolo joe");
+else if (keywords.murder == true)
+  sentences.push("I see you pointed out the murder.");
+else sentences.push("Hello my name is joe bartolo john");
 
 console.log(sentences.join(" "));
-// make it so each set of sentences is chosen with an if.
-//make it so that different sentences give different score.
