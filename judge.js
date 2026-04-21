@@ -1,11 +1,13 @@
-let userName = prompt("Please enter your name:");
-let namePerson = userName.toLowerCase();
+let numberArray = 1;
+let userPrompt = prompt("Please enter your name:");
+let userPromptFinal = userPrompt.toLowerCase();
 let sentences = [];
 let openings = [
   "The arguments you gave were interesting, but now your judgement will be decided.",
   "Humans are fascinating creatures. Unfortunately, they lie. I, however, have found the truth.",
   "Let us begin my verdict.",
   "Fascinating. Some interesting points.",
+  "I am a reasoning model of the highest calibre. If you are lying, I will be able to tell.",
 ];
 const fluffWords = [
   "a",
@@ -238,6 +240,7 @@ const fluffWords = [
   "top",
   "toward",
   "towards",
+  "um",
   "under",
   "until",
   "up",
@@ -287,28 +290,22 @@ const fluffWords = [
   "yourselves",
 ];
 
-const negativeWords = ["um", "er", "and"];
-
-console.log("You said:", namePerson);
-
 const keywords = {
   alibi: false,
   murder: false,
 };
 
 for (const word in keywords) {
-  if (namePerson.includes(word)) {
+  if (userPromptFinal.includes(word)) {
     keywords[word] = true;
   }
 }
 
 sentences[0] = openings[Math.floor(Math.random() * openings.length)];
 
-setInterval(() => {
-  for (const key in keywords) {
-    console.log(keywords);
-  }
-}, 1000);
+if (keywords.alibi == true && keywords.murder == false)
+  sentences[numberArray] = "Hello my name is joe bartolo joe";
+else sentences[numberArray] = "Hello my name is joe bartolo john";
 
 if (keywords.murder == true) {
   console.log("I see you pointed out the murder.");
