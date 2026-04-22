@@ -1,3 +1,5 @@
+import wordsFull from "./json/wordsFull.json" with { type: "json" };
+let set = new Set(arr);
 let score = 0;
 let numberArray = 1;
 let userPromptFinal = prompt("Please enter your name:");
@@ -291,7 +293,7 @@ const fluffWords = [
 ];
 
 const keywords = {
-  alibi: false,
+  alibi: false, 
   murder: false,
 };
 
@@ -300,6 +302,8 @@ userPromptFinal = userPromptFinal.replace(
   /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
   "",
 );
+
+console.log(file.wordsFull);
 
 //split into words
 textArray = userPromptFinal.split(" ");
