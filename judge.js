@@ -1,8 +1,11 @@
-import wordsFull from "./json/wordsFull.json" with { type: "json" };
-let set = new Set(arr);
+/*
+define variables:
+score = the variable determining if the judge believes you.
+sentences = the array holding the judges response.
+openings = the random openings for the judge
+*/
 let score = 0;
-let numberArray = 1;
-let userPromptFinal = prompt("Please enter your name:");
+let userPrompt = prompt("Please enter your name:");
 let sentences = [];
 let openings = [
   "The arguments you gave were interesting, but now your judgement will be decided.",
@@ -11,6 +14,8 @@ let openings = [
   "Fascinating. Some interesting points.",
   "I am a reasoning model of the highest calibre. If you are lying, I will be able to tell.",
 ];
+
+//define a list of fluff words to remove
 const fluffWords = [
   "a",
   "about",
@@ -292,13 +297,31 @@ const fluffWords = [
   "yourselves",
 ];
 
+//define keywords
 const keywords = {
   alibi: false, 
   murder: false,
 };
 
-userPromptFinal = userPromptFinal.toLowerCase();
-userPromptFinal = userPromptFinal.replace(
+//function to fetch full word list
+function fetchWordData() {
+  fetch("./json/wordsFull.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => (wordsFull = data))
+    .catch((error) => console.error("Failed to fetch data:", error));
+}
+
+//fetch the list.
+fetchWordData();
+
+//convert userPrompt to lowercase and then strip of punctuation
+userPrompt = userPrompt.toLowerCase();
+userPrompt = userPrompt.replace(
   /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
   "",
 );
@@ -306,22 +329,24 @@ userPromptFinal = userPromptFinal.replace(
 console.log(file.wordsFull);
 
 //split into words
-textArray = userPromptFinal.split(" ");
+textArray = userPrompt.split(" ");
 
+//filter textArray (the split user prompt)
 textArray = textArray.filter(function (el) {
   return !fluffWords.includes(el);
 });
 
-console.log(textArray);
+//convert textArray back into user prompt
+userPrompt = textArray.join(" ");
 
-userPromptFinal = textArray.join(" ");
 //check for keywords and turn to true
 for (const word in keywords) {
-  if (userPromptFinal.includes(word)) {
+  if (userPrompt.includes(word)) {
     keywords[word] = true;
   }
 }
 
+//push the opening sentence to sentences array
 sentences.push(openings[Math.floor(Math.random() * openings.length)]);
 
 //further sentences:
@@ -331,4 +356,5 @@ else if (keywords.murder == true)
   sentences.push("I see you pointed out the murder.");
 else sentences.push("Hello my name is joe bartolo john");
 
+//the judge final response
 console.log(sentences.join(" "));
