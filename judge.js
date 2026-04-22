@@ -17,11 +17,11 @@ let openings = [
   "Fascinating. Some interesting points.",
   "I am a reasoning model of the highest calibre. If you are lying, I will be able to tell.",
 ];
-var fluffWords = []
-var wordsFull = []
+var fluffWords = [];
+var wordsFull = [];
 //define keywords
 const keywords = {
-  alibi: false, 
+  alibi: false,
   murder: false,
 };
 
@@ -64,7 +64,6 @@ userPrompt = userPrompt.replace(
   /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
   "",
 );
-
 
 //split into words
 textArray = userPrompt.split(" ");
