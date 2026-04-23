@@ -4,6 +4,7 @@ import wordsData from "./json/wordsFull.json" with { type: "json" };
 var fluffWords = fluffData;
 var wordsFull = wordsData;
 const wordDictionary = new Set(wordsFull);
+var invalidCount = 0
 
 // Now your existing logic will work immediately without any fetch/wait!
 /*
@@ -39,12 +40,18 @@ userPrompt = userPrompt.replace(
 );
 
 //split into words
-let textArray = userPrompt.split(" ");
+let textArray = userPrompt.split(" ");          
 
 //filter textArray (the split user prompt)
 textArray = textArray.filter(function (el) {
   return !fluffWords.includes(el);
 });
+
+for (var i = 0; i < textArray.length; i++); {
+  if (wordDictionary.has(textArray[i]))
+    invalidCount += 1
+    console.log(invalidCount)
+}
 
 //convert textArray back into user prompt
 userPrompt = textArray.join(" ");
