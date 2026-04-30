@@ -1,4 +1,4 @@
-button {
+.redButton {
   position: absolute;
   left: 400px;
   top: 150px;
@@ -6,20 +6,19 @@ button {
   border-width: 1px;
   display: block;
   width: 120px;
-  height: 100px;
+  height: 60px;
   background-color: rgb(255, 0, 0);
   transition:
-    width 3s,
-    height 3s,
-    background-color 2s,
+    background-color 0.3s,
     rotate 3s,
-    border-width 1s;
+    border-style 3s,
+    transform 0.3s ease,
+    font-size 0.3s ease;
 }
 
-button:hover {
-  background-color: rgb(145, 255, 0);
-  width: 200px;
-  height: 200px;
-  rotate: 180deg;
-  border-width: 2px;
+.redButton:hover {
+  background-color: rgb(255, 115, 0);
+  transform: scale(1.2);
+  outline: 3px dotted;
+  outline-offset: 6px;
 }
