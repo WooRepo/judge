@@ -10,6 +10,8 @@
   background-color: rgb(255, 0, 0);
   transition:
     background-color 0.3s,
+    left 5s,
+    top 5s,
     rotate 3s,
     border-style 3s,
     transform 0.3s ease,
@@ -21,10 +23,4 @@
   transform: scale(1.2);
   outline: 3px dotted;
   outline-offset: 6px;
-}
-
-.redButton:enabled {
-  position: absolute;
-  left: 400px;
-  top: 300px;
 }
