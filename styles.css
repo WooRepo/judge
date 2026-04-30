@@ -17,8 +17,14 @@
 }
 
 .redButton:hover {
-  background-color: rgb(255, 115, 0);
+  background-color: rgb(255, 72, 0);
   transform: scale(1.2);
   outline: 3px dotted;
   outline-offset: 6px;
+}
+
+.redButton:enabled {
+  position: absolute;
+  left: 400px;
+  top: 300px;
 }
