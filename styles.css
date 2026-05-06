@@ -1,16 +1,15 @@
 .redButton {
   position: absolute;
-  left: 60px;
+  left: 9vw;
   border-style: solid;
   border-width: 1px;
   display: block;
-  width: 120px;
-  height: 60px;
+  width: 240px;
+  height: 120px;
   background-color: rgb(255, 0, 0);
   transition:
     background-color 0.3s,
-    left 5s,
-    top 5s,
+
     rotate 3s,
     border-style 3s,
     transform 0.3s ease,
@@ -27,9 +26,9 @@
 
 @keyframes buttonMove {
   0% {
-    transform: translateY(0px);}
+    transform: translateY(110vh);}
   100% {
-    transform: translateY(300px);}
+    transform: translateY(50dvh);}
 }
 
 @keyframes buttonSpin{
