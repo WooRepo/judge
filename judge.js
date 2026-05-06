@@ -39,13 +39,6 @@ userPrompt = userPrompt.replace(
   "",
 );
 
-document.addEventListener("DOMContentLoaded", function() {
-  let button = document.getElementById('redButton')
-
-  button.style.left = 50
-  button.style.top = 50
-});
-
 //split into words
 let textArray = userPrompt.split(" ");          
 

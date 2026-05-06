@@ -1,6 +1,4 @@
 .redButton {
-  animation: 1s buttonSpin ease;
-  animation-fill-mode: forwards;
   position: absolute;
   left: 60px;
   border-style: solid;
@@ -17,6 +15,7 @@
     border-style 3s,
     transform 0.3s ease,
     font-size 0.3s ease;
+  animation: 3s buttonSpin;
 }
 
 .redButton:hover {
@@ -26,9 +25,20 @@
   outline-offset: 6px;
 }
 
-@keyframes buttonSpin {
+@keyframes buttonMove {
   0% {
     transform: translateY(0px);}
   100% {
     transform: translateY(300px);}
+}
+
+@keyframes buttonSpin{
+  100% {
+    rotate: 360deg}
+}
+
+
+.buttonDiv {
+  animation: 3s buttonMove;
+  animation-fill-mode: forwards;
 }
