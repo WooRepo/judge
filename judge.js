@@ -5,7 +5,6 @@ var fluffWords = fluffData;
 var wordsFull = wordsData;
 const wordDictionary = new Set(wordsFull);
 var invalidCount = 0
-
 // Now your existing logic will work immediately without any fetch/wait!
 /*
 define variables:
@@ -40,7 +39,7 @@ userPrompt = userPrompt.replace(
 );
 
 //split into words
-let textArray = userPrompt.split(" ");          
+var textArray = userPrompt.split(" ");          
 
 //filter textArray (the split user prompt)
 textArray = textArray.filter(function (el) {
@@ -52,6 +51,8 @@ for (var i = 0; i < textArray.length; i++); {
     invalidCount += 1
     console.log(invalidCount)
 }
+
+const filteredArray = textArray.filter(item => !wordsDictionary.has(item));
 
 //convert textArray back into user prompt
 userPrompt = textArray.join(" ");
@@ -76,3 +77,4 @@ else sentences.push("Hello my name is joe bartolo john");
 //the judge final response
 console.log(sentences.join(" "));
 console.log(wordDictionary);
+
