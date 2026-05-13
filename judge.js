@@ -39,19 +39,38 @@ const superKeywords = {
   newspaper: false,
 };
 
-const badWords = {
-  
+const badWords = {};
+
+function sentencePush(
+  keywordList1,
+  keyword1,
+  sentence,
+  boolean,
+  keywordList2,
+  keyword2,
+  boolean2,
+  elseValue,
+) {
+  if (keyword2 == null)
+    if (keywordList1.keyword1 == boolean) sentences.push(sentence);
+    else sentences.push(elseValue);
+  else if (
+    keywordList1.keyword1 == boolean &&
+    keywordList2.keyword2 == boolean2
+  )
+    sentences.push(sentence);
+  else sentences.push(elseValue);
 }
 
 function keywordCheck(list, pointCount) {
   for (const word in list) {
-  if (textArray.includes(word)) {
-    if (list[word] === false) {
-      judgingScore += pointCount;
-      list[word] = true;
+    if (textArray.includes(word)) {
+      if (list[word] === false) {
+        judgingScore += pointCount;
+        list[word] = true;
+      }
     }
   }
-}
 }
 
 //convert userPrompt to lowercase and then strip of punctuation
@@ -70,9 +89,9 @@ textArray = textArray.filter(function (el) {
 });
 
 //check for keywords and turn to true
-keywordCheck(keywords, 3) 
-keywordCheck(badWords, -6) 
-keywordCheck(superKeywords, 9) 
+keywordCheck(keywords, 3);
+keywordCheck(badWords, -6);
+keywordCheck(superKeywords, 9);
 
 const filteredArray = textArray.filter((item) => !wordDictionary.has(item));
 console.log(filteredArray);
@@ -83,13 +102,17 @@ userPrompt = textArray.join(" ");
 sentences.push(openings[Math.floor(Math.random() * openings.length)]);
 
 //further sentences:
-if (keywords.alibi == true && keywords.murder == false)
-  sentences.push("His alibi?");
-else if (keywords.murder == true)
-  sentences.push("I see you pointed out the murder.");
-else if (keywords.murder == true && keywords.alibi == true)
-  sentences.push("I see you pointed out both the murder and the alibi.");
-else sentences.push("I don't understand what you are saying.");
+
+sentencePush(
+  keywords,
+  "alibi",
+  "His alibi... It does seem strange.",
+  true,
+  null,
+  null,
+  null,
+  "His alibi seems sound.",
+);
 
 deductionCount = filteredArray.length * 3;
 
