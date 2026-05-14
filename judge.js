@@ -42,24 +42,28 @@ const superKeywords = {
 const badWords = {};
 
 function sentencePush(
-  keywordList1,
-  keyword1,
+  list1,
+  key1,
   sentence,
-  boolean,
-  keywordList2,
-  keyword2,
-  boolean2,
+  targetBool,
+  list2,
+  key2,
+  targetBool2,
   elseValue,
 ) {
-  if (keyword2 == null)
-    if (keywordList1.keyword1 == boolean) sentences.push(sentence);
-    else sentences.push(elseValue);
-  else if (
-    keywordList1.keyword1 == boolean &&
-    keywordList2.keyword2 == boolean2
-  )
-    sentences.push(sentence);
-  else sentences.push(elseValue);
+  if (key2 == null) {
+    if (list1[key1] === targetBool) {
+      sentences.push(sentence);
+    } else {
+      sentences.push(elseValue);
+    }
+  } else {
+    if (list1[key1] === targetBool && list2[key2] === targetBool2) {
+      sentences.push(sentence);
+    } else {
+      sentences.push(elseValue);
+    }
+  }
 }
 
 function keywordCheck(list, pointCount) {
