@@ -4,7 +4,7 @@
 import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
-const threshold = 67;
+const threshold = 112;
 let deductionCount = 0;
 let judgingScore = 0;
 const fluffWords = new Set(fluffData);
@@ -34,15 +34,19 @@ const openings = [
 //define keywords
 const keywords = {
   alibi: false,
-  murder: false,
+  laura: false,
+  saracovsky: false,
 };
 
 const superKeywords = {
   morning: false,
   newspaper: false,
+  janet: false,
 };
 
-const badWords = {};
+const badWords = {
+  jose: false,
+};
 
 function sentencePush(
   list1,
@@ -100,6 +104,7 @@ keywordCheck(keywords, 12);
 keywordCheck(badWords, -6);
 keywordCheck(superKeywords, 32);
 
+
 const filteredArray = textArray.filter((item) => !wordDictionary.has(item));
 console.log(filteredArray);
 //convert textArray back into user prompt
@@ -124,6 +129,11 @@ sentencePush(
 deductionCount = filteredArray.length * 3;
 
 judgingScore = judgingScore - deductionCount;
+
+if(judgingScore>=threshold)
+  console.log("DEBUG: You win.")
+else
+  console.log("DEBUG: You lose.")
 //the judge final response
 console.log(sentences.join(" "));
 console.log(wordDictionary);
