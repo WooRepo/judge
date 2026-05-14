@@ -1,3 +1,6 @@
+//ideas for grammer
+//no direct word repeats (excluding some)
+
 import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
@@ -93,9 +96,9 @@ textArray = textArray.filter(function (el) {
 });
 
 //check for keywords and turn to true
-keywordCheck(keywords, 3);
+keywordCheck(keywords, 12);
 keywordCheck(badWords, -6);
-keywordCheck(superKeywords, 9);
+keywordCheck(superKeywords, 32);
 
 const filteredArray = textArray.filter((item) => !wordDictionary.has(item));
 console.log(filteredArray);
