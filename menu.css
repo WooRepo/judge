@@ -1,0 +1,18 @@
+.casefiles {
+    position: absolute;
+    top: 70vh;
+    left: 9vw;
+    font-size:27px;
+    font-family:Arial;
+    width:240px;
+    height:170px;
+    border-width:1px;
+    color:rgb(0, 0, 0);
+    border-color:rgba(2, 2, 2, 1);
+    background:linear-gradient(rgb(211, 211, 178), rgb(255, 231, 152));
+    transition: all 0.3s;
+}
+
+.casefiles:hover {
+    transform: scale(1.2);
+}
