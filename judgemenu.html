@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="menu.css">
     <script src="jquery-4.0.0.min.js" ></script>
+    <script type="module" src="judge.js" defer ></script>
     <meta charset="UTF-8" meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -12,6 +13,10 @@
     hi sup
     <div class="buttonDiv">
       <button type="button" class="casefiles">View Case Files</button>
+    </div>
+    <div class="defenseDiv">
+      <textarea name="defenseEnter" class="defenseEnter" placeholder="Please enter your defense." cols="70" rows="10" minlength="1" maxlength="800" spellcheck required></textarea>
+      <button type="button" class="defenseButton">Enter</button>
     </div>
   </body>
 </html>

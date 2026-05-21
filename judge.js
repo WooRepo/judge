@@ -4,7 +4,7 @@
 import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
-const threshold = 112;
+const threshold = 30;
 let deductionCount = 0;
 let judgingScore = 0;
 const fluffWords = new Set(fluffData);
@@ -104,7 +104,6 @@ keywordCheck(keywords, 12);
 keywordCheck(badWords, -6);
 keywordCheck(superKeywords, 32);
 
-
 const filteredArray = textArray.filter((item) => !wordDictionary.has(item));
 console.log(filteredArray);
 //convert textArray back into user prompt
@@ -130,10 +129,13 @@ deductionCount = filteredArray.length * 3;
 
 judgingScore = judgingScore - deductionCount;
 
-if(judgingScore>=threshold)
-  console.log("DEBUG: You win.")
-else
-  console.log("DEBUG: You lose.")
+if (judgingScore >= threshold) {
+  console.log("DEBUG: You win.");
+  document.body.style.backgroundImage = "url('sprite/judgePass.png')";
+} else {
+  console.log("DEBUG: You lose.");
+  document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
+}
 //the judge final response
 console.log(sentences.join(" "));
 console.log(wordDictionary);

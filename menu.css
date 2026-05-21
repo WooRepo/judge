@@ -19,5 +19,28 @@
 
 body {
   background-image: url("sprite/finalsprite.png");
+  background-repeat: no-repeat;
+  transition: background-image 0.5s;
   background-size: cover;
+}
+
+.defenseDiv {
+  position: absolute;
+  top: 70vh;
+  left: 40vw;
+  transition: all 0.3s;
+}
+
+.defenseDiv:hover {
+  transform: scale(1.2);
+}
+
+.defenseButton {
+  width: 30vw;
+  height: 30px;
+  background: linear-gradient(rgb(211, 211, 178), rgb(255, 231, 152));
+}
+
+.defenseEnter {
+  font-family: Helvetica, Arial, sans-serif;
 }
