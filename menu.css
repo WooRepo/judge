@@ -5,7 +5,7 @@
   font-size: 27px;
   font-family: Arial;
   width: 240px;
-  height: 170px;
+  height: 140px;
   border-width: 1px;
   color: rgb(0, 0, 0);
   border-color: rgba(2, 2, 2, 1);
@@ -24,23 +24,24 @@ body {
   background-size: cover;
 }
 
-.defenseDiv {
+.defenseEnter {
   position: absolute;
   top: 70vh;
   left: 40vw;
   transition: all 0.3s;
-}
-
-.defenseDiv:hover {
-  transform: scale(1.2);
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .defenseButton {
-  width: 30vw;
+  position: absolute;
+  top: 90vh;
+  left: 40vw;
+  width: 300px;
   height: 30px;
+    transition: all 0.3s;
   background: linear-gradient(rgb(211, 211, 178), rgb(255, 231, 152));
 }
 
-.defenseEnter {
-  font-family: Helvetica, Arial, sans-serif;
+.defenseButton:hover {
+  transform: scale(1.2);
 }
