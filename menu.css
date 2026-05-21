@@ -4,12 +4,12 @@
   left: 9vw;
   font-size: 27px;
   font-family: Arial;
-  width: 240px;
+  width: 16vw;
   height: 140px;
-  border-width: 1px;
+  border-width: 2.1px;
   color: rgb(0, 0, 0);
   border-color: rgba(2, 2, 2, 1);
-  background: linear-gradient(rgb(211, 211, 178), rgb(255, 231, 152));
+  background-color: white;
   transition: all 0.3s;
 }
 
@@ -25,21 +25,25 @@ body {
 }
 
 .defenseEnter {
+  width: 50vw;
   position: absolute;
   top: 70vh;
   left: 40vw;
   transition: all 0.3s;
   font-family: Helvetica, Arial, sans-serif;
+  outline: none;
+  border-width: 2.1px;
+  border-color: black;
 }
 
 .defenseButton {
   position: absolute;
   top: 90vh;
   left: 40vw;
-  width: 300px;
+  width: 40vh;
   height: 30px;
-    transition: all 0.3s;
-  background: linear-gradient(rgb(211, 211, 178), rgb(255, 231, 152));
+  transition: all 0.3s;
+  background-color: white;
 }
 
 .defenseButton:hover {
