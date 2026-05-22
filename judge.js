@@ -84,8 +84,11 @@ function keywordCheck(list, pointCount) {
   }
 }
 
-do {
+if (document.getElementById("defenseButton").clicked == true) {
   userPrompt = document.getElementById("defenseEnter").value;
+}
+
+do {
   document.getElementById("defenseEnter").value = "";
   //convert userPrompt to lowercase and then strip of punctuation
   userPrompt = userPrompt.toLowerCase();
