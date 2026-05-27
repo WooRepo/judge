@@ -3,7 +3,7 @@
   top: 70vh;
   left: 9vw;
   font-size: 27px;
-  font-family: Arial;
+  font-family: Helvetica, Arial, sans-serif;
   width: 16vw;
   height: 140px;
   border-width: 2.1px;
@@ -11,6 +11,7 @@
   border-color: rgba(2, 2, 2, 1);
   background-color: white;
   transition: all 0.3s;
+  outline: none;
 }
 
 .caseFiles:hover {
@@ -22,18 +23,22 @@ body {
   background-repeat: no-repeat;
   transition: background-image 0.5s;
   background-size: cover;
+  outline: none;
 }
 
 .defenseEnter {
   width: 50vw;
+  height: 18vh;
   position: absolute;
   top: 70vh;
   left: 40vw;
   transition: all 0.3s;
+  font-size: 18px;
   font-family: Helvetica, Arial, sans-serif;
   outline: none;
   border-width: 2.1px;
   border-color: black;
+  outline: none;
 }
 
 .defenseButton {
@@ -44,8 +49,62 @@ body {
   height: 30px;
   transition: all 0.3s;
   background-color: white;
+  outline: none;
 }
 
 .defenseButton:hover {
   transform: scale(1.2);
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h2 {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+button {
+  border-width: 2.1px;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  border-color: rgba(2, 2, 2, 1);
+  transition: all 0.3s;
+  outline: none;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
+
+#caseFilesPopup::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+  max-width: 70%;
+  animation: breath 8s ease-in-out infinite;
+  outline: none;
+}
+
+@keyframes breath {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#popupText {
+  white-space: pre-wrap;
 }
