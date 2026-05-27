@@ -1,4 +1,4 @@
-.casefiles {
+.caseFiles {
   position: absolute;
   top: 70vh;
   left: 9vw;
@@ -13,7 +13,7 @@
   transition: all 0.3s;
 }
 
-.casefiles:hover {
+.caseFiles:hover {
   transform: scale(1.2);
 }
 

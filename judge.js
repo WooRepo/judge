@@ -1,6 +1,3 @@
-//ideas for grammer
-//no direct word repeats (excluding some)
-
 import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
@@ -11,7 +8,6 @@ const fluffWords = new Set(fluffData);
 let wordsFull = wordsData;
 const wordDictionary = new Set(wordsFull);
 let invalidCount = 0;
-// Now your existing logic will work immediately without any fetch/wait!
 /*
 define variables:
 score = the variable determining if the judge believes you.
@@ -73,7 +69,7 @@ function sentencePush(
   }
 }
 
-function keywordCheck(list, pointCount) {
+function keywordCheck(list, pointCount, textArray) {
   for (const word in list) {
     if (textArray.includes(word)) {
       if (list[word] === false) {
@@ -84,66 +80,78 @@ function keywordCheck(list, pointCount) {
   }
 }
 
-if (document.getElementById("defenseButton").clicked == true) {
-  userPrompt = document.getElementById("defenseEnter").value;
-}
-
-do {
-  document.getElementById("defenseEnter").value = "";
-  //convert userPrompt to lowercase and then strip of punctuation
-  userPrompt = userPrompt.toLowerCase();
-  userPrompt = userPrompt.replace(
-    /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
-    "",
-  );
-
-  //split into words
-  let textArray = userPrompt.split(" ");
-
-  //filter textArray (the split user prompt)
-  textArray = textArray.filter(function (el) {
-    return !fluffWords.has(el);
-  });
-
-  //check for keywords and turn to true
-  keywordCheck(keywords, 12);
-  keywordCheck(badWords, -6);
-  keywordCheck(superKeywords, 32);
-
-  const filteredArray = textArray.filter((item) => !wordDictionary.has(item));
-  console.log(filteredArray);
-  //convert textArray back into user prompt
-  userPrompt = textArray.join(" ");
-
-  //push the opening sentence to sentences array
-  sentences.push(openings[Math.floor(Math.random() * openings.length)]);
-
-  //further sentences:
-
-  sentencePush(
-    keywords,
-    "alibi",
-    "His alibi... It does seem strange.",
-    true,
-    null,
-    null,
-    null,
-    "His alibi seems sound.",
-  );
-
-  deductionCount = filteredArray.length * 3;
-
-  judgingScore = judgingScore - deductionCount;
-
-  if (judgingScore >= threshold) {
-    console.log("DEBUG: You win.");
-    document.body.style.backgroundImage = "url('sprite/judgePass.png')";
-  } else {
-    console.log("DEBUG: You lose.");
-    document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
+document.addEventListener("DOMContentLoaded", () => {
+  const caseFiles = document.getElementById("caseFiles");
+  if (caseFiles.matches(":hover")) {
+    console.log("The mouse is currently over this element.");
   }
-  //the judge final response
-  console.log(sentences.join(" "));
-  console.log(wordDictionary);
-  console.log(judgingScore);
-} while (userPrompt != "");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("defenseButton")
+    .addEventListener("click", (event) => {
+      userPrompt = document.getElementById("defenseEnter").value;
+      if (!userPrompt.trim()) return;
+      document.getElementById("defenseEnter").value = "";
+      const defenseButton = event.target;
+      defenseButton.disabled = true;
+      //convert userPrompt to lowercase and then strip of punctuation
+      userPrompt = userPrompt.toLowerCase();
+      userPrompt = userPrompt.replace(
+        /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
+        "",
+      );
+
+      //split into words
+      let textArray = userPrompt.split(" ");
+
+      //filter textArray (the split user prompt)
+      textArray = textArray.filter(function (el) {
+        return !fluffWords.has(el);
+      });
+
+      //check for keywords and turn to true
+      keywordCheck(keywords, 12, textArray);
+      keywordCheck(badWords, -6, textArray);
+      keywordCheck(superKeywords, 32, textArray);
+
+      const filteredArray = textArray.filter(
+        (item) => !wordDictionary.has(item),
+      );
+      console.log(filteredArray);
+      //convert textArray back into user prompt
+      userPrompt = textArray.join(" ");
+
+      //push the opening sentence to sentences array
+      sentences.push(openings[Math.floor(Math.random() * openings.length)]);
+
+      //further sentences:
+
+      sentencePush(
+        keywords,
+        "alibi",
+        "His alibi... It does seem strange.",
+        true,
+        null,
+        null,
+        null,
+        "His alibi seems sound.",
+      );
+      deductionCount = filteredArray.length * 3;
+
+      judgingScore = judgingScore - deductionCount;
+
+      if (judgingScore >= threshold) {
+        console.log("DEBUG: You win.");
+        document.body.style.backgroundImage = "url('sprite/judgePass.png')";
+      } else {
+        console.log("DEBUG: You lose.");
+        document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
+      }
+      //the judge final response
+      console.log(sentences.join(" "));
+      console.log(wordDictionary);
+      console.log(judgingScore);
+    });
+});
