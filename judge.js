@@ -37,22 +37,19 @@ const openings = [
 if (urlParams.has("case1")) {
   caseOverview = `The Case of the Missing Ear
 12/3/26
-
-Police arrived late Tuesday night at the house of Joelle Smith after a neighbor heard a commotion and called at 10:50. They found her bent over the lifeless corpse of her cousin, the body still warm. There were no fingerprints, only tire marks from her car. They immediately arrested her on a charge of manslaughter. You can sense this case is not what it seems.
-
-Joelle has asked for your help in solving her cousin Sam’s “murder.”
-
+Police arrived late last night at the house of Joelle Smith after a neighbor heard a scream and called at 10:50. They found her bent over the lifeless corpse of her cousin, the body still warm. There were no fingerprints, only tire marks from her car. They immediately arrested her on a charge of manslaughter. You can sense this case is not what it seems.
+Joelle has asked for your help in solving her cousin Sam’s “murder."
 According to Joelle: It was late one night, and she was backing her car into her driveway after a long day at work. She got in at roughly 11. However, she heard a large crunch from under her car wheels. She got out of the car and saw a dead body beneath her tires. It was her cousin Sam! Initially, she thought she had crushed him, and she was so scared she couldn’t speak, but when she looked closer, she noticed that one of his ears had been cleanly cut off.
-
-According to the worried neighbor, Ms. Park: I heard a scream come from the house next door, and I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them.
+According to the worried neighbor, Ms. Park: "I heard a scream come from the house next door, and it was obviously Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
 
 Other Clues:
-
-Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, that I leave to my beloved nephew, shall be locked for 10 years, until they are of sound maturity to receive it.”
-
+SMS 3/3/26 4:30pm +64 22 243 3790:
+My good friend. The time has come. Your uncle was a great man, but I am sure you will be even greater. Let us meet at Littlegrove Cafe at 6. I have enjoyed my time with it, but now it will be yours. We will have to quick, as I have a plane to catch.
+Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, that I leave to my beloved nephew, shall be locked for 10 years and held by my close friend Mr. Rockmouth, until my nephew of sound maturity to receive it.”
 Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweler at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The will reading will take place on his estate.
-
 Article of Note: The Ear of Littlegrove (Rockmouth Jewelers, 4/5/84). This magnificent earring has been missing for decades and is one of the most coveted pieces of jewelry in existence. It vanished in the early 60s and is presumably in the collection of a wealthy collector. If any jeweler were to possess it, it would be the crown jewel of their collection.
+
+Mr. Rockmouth is unavailable for comment as he has been at a wedding in Tahiti for the past week, and this has been verified by police.
 
 Attendance List at the Will Reading of Mr. Ronald Smith: 
 Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — Family; Mr. Sam Smith — Family; Mrs. Jasmine Park — Friend; Ms. Joelle Smith — Family; Mr. Charlie Pearl — Friend; Mrs. Rhonda Carlyle — Family; Mr. Steven Rockmouth; Lawyer — Mrs. Abbey Green`;
@@ -128,6 +125,7 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
   };
 
   superKeywords = {
+    murder: false,
     10: false,
     50: false,
     11: false,
@@ -262,14 +260,18 @@ function sentencePush(
   targetBool2,
   elseValue,
 ) {
+  const keysArray = Array.isArray(key1) ? key1 : [key1];
+  const match1 = keysArray.some((k) => list1[k] === targetBool);
+  const isKey1Match = keysArray.some((key) => list1[key] === targetBool);
+
   if (key2 == null) {
-    if (list1[key1] === targetBool) {
+    if (isKey1Match) {
       sentences.push(sentence);
     } else {
       sentences.push(elseValue);
     }
   } else {
-    if (list1[key1] === targetBool && list2[key2] === targetBool2) {
+    if (isKey1Match && list2[key2] === targetBool2) {
       sentences.push(sentence);
     } else {
       sentences.push(elseValue);
@@ -336,17 +338,17 @@ document.addEventListener("DOMContentLoaded", () => {
           null,
           null,
           null,
-          "The timeline parameters seem sound.",
+          "The timeline seems sound.",
         );
         sentencePush(
           superKeywords,
           "treasure",
-          "The legendary earring angle holds weight.",
+          "Are you saying somebody plans to steal the earring?",
           true,
           null,
           null,
           null,
-          "You haven't established a clear motive.",
+          "There is no motive for any foul play.",
         );
       } else if (urlParams.has("case2")) {
         sentencePush(
