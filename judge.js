@@ -54,8 +54,6 @@ Mr. Rockmouth is unavailable for comment as he has been at a wedding in Tahiti f
 Attendance List at the Will Reading of Mr. Ronald Smith: 
 Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — Family; Mr. Sam Smith — Family; Mrs. Jasmine Park — Friend; Ms. Joelle Smith — Family; Mr. Charlie Pearl — Friend; Mrs. Rhonda Carlyle — Family; Mr. Steven Rockmouth; Lawyer — Mrs. Abbey Green`;
   keywords = {
-    park: false,
-    parks: false,
     jasmine: false,
     neighbor: false,
     neighbors: false,
@@ -125,6 +123,8 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
   };
 
   superKeywords = {
+    park: false,
+    parks: false,
     murder: false,
     10: false,
     50: false,
