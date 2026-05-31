@@ -108,3 +108,17 @@ dialog {
 #popupText {
   white-space: pre-wrap;
 }
+
+.judgeResponse {
+  border-style: solid;
+  font-size: 20px;
+  width: 35%;
+  margin-left: 60%;
+  background-color: white;
+  margin-top: 4%;
+  transition: all 0.5s;
+}
+
+.judgeResponse:hover {
+  transform: scale(1.2);
+}

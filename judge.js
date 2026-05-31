@@ -7,7 +7,7 @@ let superKeywords = {};
 let badWords = {};
 const urlParams = new URLSearchParams(window.location.search);
 const caseId = Math.random().toString(36);
-const threshold = 200;
+const threshold = 180;
 let deductionCount = 0;
 let judgingScore = 0;
 const fluffWords = new Set(fluffData);
@@ -216,21 +216,93 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
     creature: false,
   };
 } else if (urlParams.has("case2")) {
-  caseOverview = "";
+  caseOverview = `Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, dropped dead in front of them. After an autopsy, the cause of death was determined: poison. The manager of the cafe, Elliot Ollar, was immediately arrested, and they need your help to prove their innocence.
+
+Here is what you know:
+
+Excerpt from “A guide to Littlegrove (The rundown on NZ’s sleepiest little city.)": Please be aware that Littlegrove has a significant mafia presence in the form of the loan sharking and “debt collection” group, The Bloody Paw. Their leader is currently unknown.
+
+A report from Ivor Drisaac, a child who was in the cafe at the time of the death: “I saw a tall man behind the counter just before the death. I couldn’t make out his face, but he dropped a little magnifying glass.”
+
+Reported by Caine Carlyle, a child who was in the cafe at the time of the death: “Some creepy tall guy was also in the cafe. He was texting madly on his phone. You should probably talk to him. He gave me a jade necklace just to make a racket about my drink.”
+
+Witness report from Harriet Dove, a worried local who was in the cafe at the time of the death: “Oh yeah, Elliot didn’t do it. He was in deep discussion with some annoying kid. Not Ivor, but a brat named Caine Carlyle. He was throwing a tantrum about his hot chocolate having too much milk or something.”
+
+Excerpt from the Littlegrove reporter: Rockmouth Jewellers has recently been forced to shut down after the owner, a beloved local named Mr. Steven Rockmouth, found himself in massive debt, and the property had to be seized. This appears to be more work of the dreaded Bloody Paw.
+
+SMS +64 22 894 4971: Can you two tell Charlie I’m sorry? I need that money to pay for rent this month.
+
+SMS +64 21 765 8436: The boss isn’t happy with you. You better get your paperwork in order, or we will have to come and sort you out ourselves.
+
+SMS +64 22 894 4971: You leave me no choice. Charlie is going to get what’s coming to him.`;
   keywords = {
-    alibi: false,
-    laura: false,
-    saracovsky: false,
+    glass: false,
+    magnifying: false,
+    necklace: false,
+    phone: false,
+    text: false,
+    texting: false,
+    message: false,
+    sms: false,
+    rent: false,
+    money: false,
+    cash: false,
+    debt: false,
+    seized: false,
+    harriet: false,
+    dove: false,
+    ivor: false,
+    drisaac: false,
+    caine: false,
+    carlyle: false,
+    tantrum: false,
+    superSecretFoundTheKiller: false,
   };
 
   superKeywords = {
-    morning: false,
-    newspaper: false,
-    janet: false,
+    sms: false,
+    magnifying: false,
+    alibi: false,
+    argument: false,
+    rockmouth: false,
+    steven: false,
+    jeweler: false,
+    jewellers: false,
+    racket: false,
+    commotion: false,
+    distraction: false,
+    tall: false,
+    carlyle: false,
   };
 
   badWords = {
-    jose: false,
+    ghost: false,
+    phantom: false,
+    spirit: false,
+    specter: false,
+    zombie: false,
+    curse: false,
+    alien: false,
+    aliens: false,
+    monster: false,
+    stabbed: false,
+    stabbing: false,
+    knife: false,
+    blade: false,
+    gun: false,
+    shot: false,
+    shooting: false,
+    bullet: false,
+    strangled: false,
+    suffocated: false,
+    logic: false,
+    obviously: false,
+    clearly: false,
+    swear: false,
+    promise: false,
+    believe: false,
+    trust: false,
+    honest: false,
   };
 } else if (urlParams.has("case3")) {
   caseOverview = "";
@@ -449,14 +521,82 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       } else if (urlParams.has("case2")) {
         sentencePush(
-          keywords,
-          ["alibi"],
-          "His alibi... It does seem strange.",
+          badWords,
+          [
+            "ghost",
+            "phantom",
+            "spirit",
+            "specter",
+            "zombie",
+            "curse",
+            "alien",
+            "aliens",
+            "monster",
+            "stabbed",
+            "stabbing",
+            "knife",
+            "blade",
+            "gun",
+            "shot",
+            "shooting",
+            "bullet",
+            "strangled",
+            "suffocated",
+            "logic",
+            "obviously",
+            "clearly",
+            "swear",
+            "promise",
+            "believe",
+            "trust",
+            "honest",
+          ],
+          "Hmm. Let's keep to the facts.",
           true,
           null,
           null,
           null,
-          "His alibi seems sound.",
+          "<PROCESSING>.",
+        );
+        sentencePush(
+          superKeywords,
+          ["alibi", "carlyle"],
+          "Mr. Ollar has an alibi.",
+          true,
+          null,
+          null,
+          null,
+          "Mr. Ollar has no alibi.",
+        );
+        sentencePush(
+          superKeywords,
+          ["jeweller", "jewellers"],
+          "Yes! A magnifying glass, a common tool for jewellers.",
+          true,
+          superKeywords,
+          "magnifying",
+          true,
+          "The magnifying glass is unrelated.",
+        );
+        sentencePush(
+          superKeywords,
+          ["carlyle", "racket", "distraction", "commotion"],
+          "Caine Carlyle created the perfect distraction.",
+          true,
+          null,
+          null,
+          null,
+          "There was no time for anyone else to commit the crime.",
+        );
+        sentencePush(
+          superKeywords,
+          ["steven", "rockmouth", "tall"],
+          "The Tall Man. It all makes sense now. Steven was in debt to the Bloody Paw and they forced him to close his jewelry shop for good, so he went to the top of the organization, Charlie Pearl, and took them out for revenge.",
+          true,
+          keywords,
+          "superSecretFoundTheKiller",
+          true,
+          "Your arguments haven't convinced me. I have found Elliot Ollar guilty of manslaughter.",
         );
       } else if (urlParams.has("case3")) {
         sentencePush(
@@ -484,5 +624,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(sentences.join(" "));
       console.log(wordDictionary);
       console.log(judgingScore);
+      document.getElementById("judgeResponse").textContent =
+        sentences.join(" ");
     });
 });
