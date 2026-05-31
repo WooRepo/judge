@@ -7,7 +7,7 @@ let superKeywords = {};
 let badWords = {};
 const urlParams = new URLSearchParams(window.location.search);
 const caseId = Math.random().toString(36);
-const threshold = 250;
+const threshold = 200;
 let deductionCount = 0;
 let judgingScore = 0;
 const fluffWords = new Set(fluffData);
@@ -40,12 +40,12 @@ if (urlParams.has("case1")) {
 Police arrived late last night at the house of Joelle Smith after a neighbor heard a scream and called at 10:50. They found her bent over the lifeless corpse of her cousin, the body still warm. There were no fingerprints, only tire marks from her car. They immediately arrested her on a charge of manslaughter. You can sense this case is not what it seems.
 Joelle has asked for your help in solving her cousin Sam’s “murder."
 According to Joelle: It was late one night, and she was backing her car into her driveway after a long day at work. She got in at roughly 11. However, she heard a large crunch from under her car wheels. She got out of the car and saw a dead body beneath her tires. It was her cousin Sam! Initially, she thought she had crushed him, and she was so scared she couldn’t speak, but when she looked closer, she noticed that one of his ears had been cleanly cut off.
-According to the worried neighbor, Ms. Park: "I heard a scream come from the house next door, and it was obviously Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
+According to the worried neighbor, Mrs. Park: "I heard a scream come from the house next door, and it was obviously Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
 
 Other Clues:
 SMS 3/3/26 4:30pm +64 22 243 3790:
-My good friend. The time has come. Your uncle was a great man, but I am sure you will be even greater. Let us meet at Littlegrove Cafe at 6. I have enjoyed my time with it, but now it will be yours. We will have to quick, as I have a plane to catch.
-Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, that I leave to my beloved nephew, shall be locked for 10 years and held by my close friend Mr. Rockmouth, until my nephew of sound maturity to receive it.”
+My good friend. The time has come. Your uncle was a great man, but I am sure you will be even greater. Let us meet at Littlegrove Cafe at 6. I have enjoyed my time with it, but now it will be yours. We will have to be quick, as I have a plane to catch.
+Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, that I leave to my beloved nephew, shall be locked for 10 years and held by my close friend Mr. Rockmouth, until my nephew is of sound maturity to receive it.”
 Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweler at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The will reading will take place on his estate.
 Article of Note: The Ear of Littlegrove (Rockmouth Jewelers, 4/5/84). This magnificent earring has been missing for decades and is one of the most coveted pieces of jewelry in existence. It vanished in the early 60s and is presumably in the collection of a wealthy collector. If any jeweler were to possess it, it would be the crown jewel of their collection.
 
@@ -54,7 +54,6 @@ Mr. Rockmouth is unavailable for comment as he has been at a wedding in Tahiti f
 Attendance List at the Will Reading of Mr. Ronald Smith: 
 Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — Family; Mr. Sam Smith — Family; Mrs. Jasmine Park — Friend; Ms. Joelle Smith — Family; Mr. Charlie Pearl — Friend; Mrs. Rhonda Carlyle — Family; Mr. Steven Rockmouth; Lawyer — Mrs. Abbey Green`;
   keywords = {
-    jasmine: false,
     neighbor: false,
     neighbors: false,
     ronald: false,
@@ -112,6 +111,7 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
     stolen: false,
     theft: false,
     robber: false,
+    banker: false,
     fortune: false,
     12: false,
     3: false,
@@ -120,9 +120,12 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
     march: false,
     2016: false,
     16: false,
+    superSecretFoundTheKiller: false,
   };
 
   superKeywords = {
+    jasmine: false,
+    honor: false,
     park: false,
     parks: false,
     murder: false,
@@ -135,7 +138,6 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
     discrepancy: false,
     contradiction: false,
     sequence: false,
-    earing: false,
     earrings: false,
     earring: false,
     jewel: false,
@@ -154,7 +156,6 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
     surgical: false,
     rockmouth: false,
     steven: false,
-    banker: false,
     expert: false,
     appraiser: false,
     jeweler: false,
@@ -261,7 +262,6 @@ function sentencePush(
   elseValue,
 ) {
   const keysArray = Array.isArray(key1) ? key1 : [key1];
-  const match1 = keysArray.some((k) => list1[k] === targetBool);
   const isKey1Match = keysArray.some((key) => list1[key] === targetBool);
 
   if (key2 == null) {
@@ -304,13 +304,14 @@ document.addEventListener("DOMContentLoaded", () => {
       defenseButton.disabled = true;
       //convert userPrompt to lowercase and then strip of punctuation
       userPrompt = userPrompt.toLowerCase();
+      userPrompt = userPrompt.replace(/['"“”`]/g, "");
       userPrompt = userPrompt.replace(
-        /[\.,-\/#!$%\^&\*;:{}="'\-_`~()@\+\?><\[\]\+]/g,
-        "",
+        /[\.,-\/#!$%\^&\*;:{}=\-_~()@\+\?><\[\]]/g,
+        " ",
       );
 
       //split into words
-      let textArray = userPrompt.split(" ");
+      let textArray = userPrompt.split(/\s+/);
 
       //filter textArray (the split user prompt)
       textArray = textArray.filter(function (el) {
@@ -318,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       //check for keywords and turn to true
-      keywordCheck(keywords, 12, textArray);
+      keywordCheck(keywords, 6, textArray);
       keywordCheck(badWords, -6, textArray);
       keywordCheck(superKeywords, 32, textArray);
 
@@ -328,12 +329,77 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(filteredArray);
       //convert textArray back into user prompt
       userPrompt = textArray.join(" ");
+      deductionCount = filteredArray.length * 3;
+      judgingScore = judgingScore - deductionCount;
+      if (judgingScore >= threshold) {
+        keywords.superSecretFoundTheKiller = true;
+      }
       sentences.push(openings[Math.floor(Math.random() * openings.length)]);
       if (urlParams.has("case1")) {
         sentencePush(
+          badWords,
+          [
+            "beatrice",
+            "felix",
+            "rosa",
+            "charlie",
+            "rhonda",
+            "abbey",
+            "green",
+            "carlyle",
+            "pearl",
+            "samuel",
+            "ghost",
+            "phantom",
+            "spirit",
+            "specter",
+            "zombie",
+            "reincarnation",
+            "curse",
+            "haunting",
+            "haunted",
+            "fake",
+            "phoney",
+            "swear",
+            "promise",
+            "believe",
+            "trust",
+            "honest",
+            "truthful",
+            "logic",
+            "obviously",
+            "clearly",
+            "poison",
+            "poisoned",
+            "venom",
+            "gun",
+            "shot",
+            "shooting",
+            "pistol",
+            "bullet",
+            "stabbed",
+            "stabbing",
+            "suffocated",
+            "strangled",
+            "drowned",
+            "explosion",
+            "fire",
+            "alien",
+            "aliens",
+            "monster",
+            "creature",
+          ],
+          "Hmm. Let's keep to the facts.",
+          true,
+          null,
+          null,
+          null,
+          "<PROCESSING>.",
+        );
+        sentencePush(
           superKeywords,
-          "discrepancy",
-          "The timeline mismatch... It does seem strange.",
+          ["discrepancy", "10", "11", "contradiction"],
+          "The timeline mismatch... It does seem strange. Something isn't adding up.",
           true,
           null,
           null,
@@ -342,18 +408,49 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         sentencePush(
           superKeywords,
-          "treasure",
-          "Are you saying somebody plans to steal the earring?",
+          [
+            "treasure",
+            "earring",
+            "earrings",
+            "crown",
+            "jewelry",
+            "crown",
+            "coveted",
+            "missing",
+            "collection",
+            "heirloom",
+          ],
+          "Somebody must have planned to steal the Ear of Littlegrove.",
           true,
           null,
           null,
           null,
           "There is no motive for any foul play.",
         );
+        sentencePush(
+          superKeywords,
+          ["rockmouth", "steven"],
+          "Steven Rockmouth couldn't have done it. He was in Tahiti...",
+          true,
+          null,
+          null,
+          null,
+          "<PROCESSING>.",
+        );
+        sentencePush(
+          superKeywords,
+          ["jasmine", "park"],
+          "Jasmine Park did it! She went to the will reading so knew about the treasure, and she called the police, just so they would find poor Joelle at the scene of the crime. She has Sam's ear, and the ear of littlegrove.",
+          true,
+          keywords,
+          "superSecretFoundTheKiller",
+          true,
+          "Your arguments haven't convinced me. I have found Joelle Smith guilty of manslaughter.",
+        );
       } else if (urlParams.has("case2")) {
         sentencePush(
           keywords,
-          "alibi",
+          ["alibi"],
           "His alibi... It does seem strange.",
           true,
           null,
@@ -364,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (urlParams.has("case3")) {
         sentencePush(
           keywords,
-          "alibi",
+          ["alibi"],
           "His alibi... It does seem strange.",
           true,
           null,
@@ -375,10 +472,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.log("ERROR: NO CASES SELECTED");
       }
-
-      deductionCount = filteredArray.length * 3;
-
-      judgingScore = judgingScore - deductionCount;
 
       if (judgingScore >= threshold) {
         console.log("DEBUG: You win.");
