@@ -1,3 +1,20 @@
+/**
+ * Title: ChatJPT
+ * Author: Bill Kelly
+ * Date: April 22nd 2026
+ * Version: 38
+ * Purpose: CSC Assesment
+  _______  _______  _______ _________ _        _______  _______             _______  _______  _       _________ _        _______ 
+(  ____ \(  ____ )(  ___  )\__   __/( \      (  ____ \(  ____ )  |\     /|(  ___  )(  ____ )( (    /|\__   __/( (    /|(  ____ \
+| (    \/| (    )|| (   ) |   ) (   | (      | (    \/| (    )|  | )   ( || (   ) || (    )||  \  ( |   ) (   |  \  ( || (    \/
+| (_____ | (____)|| |   | |   | |   | |      | (__    | (____)|  | | _ | || (___) || (____)||   \ | |   | |   |   \ | || |      
+(_____  )|  _____)| |   | |   | |   | |      |  __)   |     __)  | |( )| ||  ___  ||     __)| (\ \) |   | |   | (\ \) || | ____ 
+      ) || (      | |   | |   | |   | |      | (      | (\ (     | || || || (   ) || (\ (   | | \   |   | |   | | \   || | \_  )
+/\____) || )      | (___) |___) (___| (____/\| (____/\| ) \ \__  | () () || )   ( || ) \ \__| )  \  |___) (___| )  \  || (___) |
+\_______)|/       (_______)\_______/(_______/(_______/|/   \__/  (_______)|/     \||/   \__/|/    )_)\_______/|/    )_)(_______)
+To have the most fun, please play the game before looking at the code (it tells you all of the solutions.)
+ **/
+
 import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
@@ -14,15 +31,6 @@ const fluffWords = new Set(fluffData);
 let wordsFull = wordsData;
 const wordDictionary = new Set(wordsFull);
 let invalidCount = 0;
-/*
-define variables:
-score = the variable determining if the judge believes you.
-userPrompt 
-sentences = the array holding the judges response.
-openings = the random openings for the judge
-wordsFull = define the array that is a list of words to be fetched later
-fluffWords = define the array that is a list of fluff words to be fetched later
-*/
 let score = 0;
 let userPrompt = "";
 let sentences = [];
@@ -36,23 +44,26 @@ const openings = [
 //define keywords
 if (urlParams.has("case1")) {
   caseOverview = `The Case of the Missing Ear
-12/3/26
-Police arrived late last night at the house of Joelle Smith after a neighbor heard a scream and called at 10:50. They found her bent over the lifeless corpse of her cousin, the body still warm. There were no fingerprints, only tire marks from her car. They immediately arrested her on a charge of manslaughter. You can sense this case is not what it seems.
-Joelle has asked for your help in solving her cousin Sam’s “murder."
-According to Joelle: It was late one night, and she was backing her car into her driveway after a long day at work. She got in at roughly 11. However, she heard a large crunch from under her car wheels. She got out of the car and saw a dead body beneath her tires. It was her cousin Sam! Initially, she thought she had crushed him, and she was so scared she couldn’t speak, but when she looked closer, she noticed that one of his ears had been cleanly cut off.
-According to the worried neighbor, Mrs. Park: "I heard a scream come from the house next door, and it was obviously Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
 
-Other Clues:
-SMS 3/3/26 4:30pm +64 22 243 3790:
-My good friend. The time has come. Your uncle was a great man, but I am sure you will be even greater. Let us meet at Littlegrove Cafe at 6. I have enjoyed my time with it, but now it will be yours. We will have to be quick, as I have a plane to catch.
-Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, that I leave to my beloved nephew, shall be locked for 10 years and held by my close friend Mr. Rockmouth, until my nephew is of sound maturity to receive it.”
+Police arrived late last night 12/3/26 at the house of Joelle Smith after a neighbour heard a scream. The police found Joelle bent over the lifeless corpse of her cousin, Sam Smith, the body still warm. There were tire marks across the torso of the body. Joelle was arrested on a charge of manslaughter. 
+
+As Joelle’s lawyer, you can sense this case is not what it seems and they need your help to prove their innocence. Here is what you have found out.
+ 
+According to Joelle, last night she backed her car into her driveway as usual, after a long day at work. She says she arrived home just as the eleven o'clock news bulletin just started on the radio. When reaching the top of the drive, Joelle heard a crunch from under her car wheels. She got out and saw a body beneath her car. It was her cousin Sam! Initially, as she thought she had killed him she he was so shocked she couldn’t speak. Joelle stated she was still staring at the body when the police arrived. As they arrested her she saw them removing Sam’s body and she noticed that one of his ears had been cleanly cut off.
+
+According to the police statement the worried neighbour, Mrs. Park called the police at 10:50pm. She stated she "heard a scream come from the house next door, which I recognised as Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
+
+Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, who shares my love of beautiful things, I leave to my beloved nephew, Sam who is like a son to me. However it will be held by my close friend and jeweler, Mr. Steven Rockmouth, until my nephew reaches 21 and is of sound maturity to receive it.”
+
 Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweler at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The will reading will take place on his estate.
+
+Attendance List at the Will Reading of Mr. Ronald Smith:
+Ms. Joelle Smith — daughter; Mrs. Beatrice Smith — Sister; Mr. Sam Smith — nephew; Mrs. Rhonda Carlyle — sister; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — niece; Mrs. Jasmine Park — Friend; Mr. Charlie Pearl — Friend; Mr. Steven Rockmouth - Friend; 
+
 Article of Note: The Ear of Littlegrove (Rockmouth Jewelers, 4/5/84). This magnificent earring has been missing for decades and is one of the most coveted pieces of jewelry in existence. It vanished in the early 60s and is presumably in the collection of a wealthy collector. If any jeweler were to possess it, it would be the crown jewel of their collection.
 
-Mr. Rockmouth is unavailable for comment as he has been at a wedding in Tahiti for the past week, and this has been verified by police.
-
-Attendance List at the Will Reading of Mr. Ronald Smith: 
-Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — Family; Mr. Sam Smith — Family; Mrs. Jasmine Park — Friend; Ms. Joelle Smith — Family; Mr. Charlie Pearl — Friend; Mrs. Rhonda Carlyle — Family; Mr. Steven Rockmouth; Lawyer — Mrs. Abbey Green`;
+Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tahiti for the past week, and this has been verified by police. However the Police have revealed his last text message sent 3/3/26 4:30pm +64 22 243 3790: SMS. “Ronald was a great man… Let us meet at Littlegrove Cafe at 6pm and you will receive your package. We will have to be quick, as I have a plane to catch”.
+`;
   keywords = {
     neighbor: false,
     neighbors: false,
@@ -216,25 +227,27 @@ Mrs. Beatrice Smith — Family; Mr. Felix Carlyle — Family; Ms. Rosa Samuel �
     creature: false,
   };
 } else if (urlParams.has("case2")) {
-  caseOverview = `Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, dropped dead in front of them. After an autopsy, the cause of death was determined: poison. The manager of the cafe, Elliot Ollar, was immediately arrested, and they need your help to prove their innocence.
+  caseOverview = `Coffee Served Cold 
 
-Here is what you know:
+Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, when drinking his regular flat white, dropped dead in front of them. After an autopsy, the cause of death was determined as poison. The manager of the cafe, Elliot Ollar, was immediately arrested on a charge of manslaughter.
 
-Excerpt from “A guide to Littlegrove (The rundown on NZ’s sleepiest little city.)": Please be aware that Littlegrove has a significant mafia presence in the form of the loan sharking and “debt collection” group, The Bloody Paw. Their leader is currently unknown.
+As Elliot’s lawyer, you can sense this case is not what it seems and they need your help to prove their innocence. Here is what you have found out.
 
-A report from Ivor Drisaac, a child who was in the cafe at the time of the death: “I saw a tall man behind the counter just before the death. I couldn’t make out his face, but he dropped a little magnifying glass.”
+You have been able to interview the customers in the cafe who were witnesses at the time of Mr. Pearl’s death. 
+From the account of Ivor Drisaac: “I saw a tall man behind the counter before the other man fell over. I couldn’t make out his face, but he dropped a little magnifying glass.” His friend, Caine Carlyle, reported the same tall guy was texting madly on his phone. He said “the man gave me a jade necklace to make a racket about something wrong with my drink”.
 
-Reported by Caine Carlyle, a child who was in the cafe at the time of the death: “Some creepy tall guy was also in the cafe. He was texting madly on his phone. You should probably talk to him. He gave me a jade necklace just to make a racket about my drink.”
+Witness report from Harriet Dove, a customer and friend of the cafe manager Elliot. “Oh yeah, Elliot didn’t do it. Charlie Pearl was still waiting for Elliot to serve his coffee when he got held up sorting out some annoying kid, throwing a tantrum about his hot chocolate having too much milk or something.”
 
-Witness report from Harriet Dove, a worried local who was in the cafe at the time of the death: “Oh yeah, Elliot didn’t do it. He was in deep discussion with some annoying kid. Not Ivor, but a brat named Caine Carlyle. He was throwing a tantrum about his hot chocolate having too much milk or something.”
+Excerpt from the Littlegrove reporter: Rockmouth Jewellers has recently been forced to shut down after the owner, Littlegrove’s lanky legend Mr. Steven Rockmouth, found himself in massive debt. The shop has now been opened under “new management”. Rumour suggests the Bloody Paw’s involvement.
 
-Excerpt from the Littlegrove reporter: Rockmouth Jewellers has recently been forced to shut down after the owner, a beloved local named Mr. Steven Rockmouth, found himself in massive debt, and the property had to be seized. This appears to be more work of the dreaded Bloody Paw.
+Advert in “A guide to Littlegrove: The rundown on NZ’s sleepiest little city.": Business and Finance needs. Money problems?  Make us the Solution.
+The Bloody Paw loans and debt collection service. Absolute discretion and privacy guaranteed. 
 
-SMS +64 22 894 4971: Can you two tell Charlie I’m sorry? I need that money to pay for rent this month.
-
-SMS +64 21 765 8436: The boss isn’t happy with you. You better get your paperwork in order, or we will have to come and sort you out ourselves.
-
-SMS +64 22 894 4971: You leave me no choice. Charlie is going to get what’s coming to him.`;
+Cell phone tower data at the time of Mr Pearl’s death revealed the following messages:
+SMS +64 22 894 4971: You have already ruined me… I have nothing left to give you.
+SMS +64 21 765 8436: We were clear, you need to keep paying up. A debt is a debt. We need the rest of the money today or your throat gets cut.
+SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye - you‘ll get what’s coming to you.
+`;
   keywords = {
     glass: false,
     magnifying: false,
