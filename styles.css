@@ -1,46 +1,60 @@
+body,
+p,
+h2,
+.case1,
+.case2,
+button {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+.case1,
+.case2,
+button {
+  border: 2.1px solid rgb(2, 2, 2);
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.case1:hover,
+.case2:hover,
+button:hover {
+  transform: scale(1.2);
+}
+
 img {
   position: absolute;
   left: 29vw;
-  height: 500px;
-}
-.case1 {
-  position: absolute;
-  left: 30%;
-  top: 50%;
-  transition: all 0.3s;
-  font-family: Helvetica, Arial, sans-serif;
-  border-width: 2.1px;
-  color: rgb(0, 0, 0);
-  border-color: rgba(2, 2, 2, 1);
-  background-color: white;
-  outline: none;
-  height: 90px;
-  width: 180px;
-  font-size: 25px;
+  height: 45vh;
 }
 
+.case1,
 .case2 {
   position: absolute;
-  left: 60%;
   top: 50%;
-  transition: all 0.3s;
-  font-family: Helvetica, Arial, sans-serif;
-  border-width: 2.1px;
-  color: rgb(0, 0, 0);
-  border-color: rgba(2, 2, 2, 1);
-  background-color: white;
-  outline: none;
   height: 90px;
   width: 180px;
   font-size: 25px;
 }
 
-.case1:hover {
-  transform: scale(1.2);
+.case1 {
+  left: 30%;
+}
+.case2 {
+  left: 60%;
 }
 
-.case2:hover {
-  transform: scale(1.2);
+.tutorial {
+  position: absolute;
+  top: 80%;
+  left: 44%;
+  width: 240px;
+  height: 150px;
+  font-size: 25px;
 }
 
 #tutorialPopup::backdrop {
@@ -50,57 +64,25 @@ img {
 dialog {
   max-width: 70%;
   animation: breath 8s ease-in-out infinite;
-  outline: none;
-}
-
-@keyframes breath {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: rotate(1deg);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  75% {
-    transform: rotate(-1deg);
-  }
-  100% {
-    transform: scale(1);
-  }
+  will-change: transform;
 }
 
 #popupText {
   white-space: pre-wrap;
 }
 
-p {
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-h2 {
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-button {
-  border-width: 2.1px;
-  color: rgb(0, 0, 0);
-  background-color: white;
-  border-color: rgba(2, 2, 2, 1);
-  transition: all 0.3s;
-  outline: none;
-}
-
-button:hover {
-  transform: scale(1.2);
-}
-
-.tutorial {
-  position: absolute;
-  height: 150px;
-  width: 240px;
-  left: 44%;
-  top: 80%;
-  font-size: 25px;
+@keyframes breath {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.025) rotate(1deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.025) rotate(-1deg);
+  }
 }

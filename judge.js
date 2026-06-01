@@ -18,31 +18,31 @@ To have the most fun, please play the game before looking at the code (it tells 
 import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
+// Constants and other variables
 let caseOverview = "";
 let keywords = {};
 let superKeywords = {};
 let badWords = {};
-const urlParams = new URLSearchParams(window.location.search);
-const caseId = Math.random().toString(36);
-const threshold = 180;
+const URLPARAMS = new URLSearchParams(window.location.search);
+const CASEID = Math.random().toString(36); // Generates a unique case reference ID (For immersion).
+const THRESHOLD = 180;
 let deductionCount = 0;
 let judgingScore = 0;
-const fluffWords = new Set(fluffData);
-let wordsFull = wordsData;
-const wordDictionary = new Set(wordsFull);
-let invalidCount = 0;
-let score = 0;
+// Uses sets for optimisation (they search faster than arrays.)
+const FLUFFWORDS = new Set(fluffData);
+const WORDDICTIONARY = new Set(wordsData);
 let userPrompt = "";
-let sentences = [];
-const openings = [
+const SENTENCES = []; // Holds strings to construct the Judge's dynamic dialogue
+// Pool of introductory dialogue for the AI judge
+const OPENINGS = [
   "The arguments you gave were interesting, but now your client's judgement will be decided.",
   "Humans are fascinating creatures. Unfortunately, they lie. I, however, have found the truth.",
   "Let us begin my verdict.",
   "Fascinating. Some interesting points.",
   "I am a reasoning model of the highest calibre. If your client is lying, I will be able to tell.",
 ];
-//define keywords
-if (urlParams.has("case1")) {
+//define the cases, and the different tiers of keywords for each.
+if (URLPARAMS.has("case1")) {
   caseOverview = `The Case of the Missing Ear
 
 Police arrived late last night 12/3/26 at the house of Joelle Smith after a neighbour heard a scream. The police found Joelle bent over the lifeless corpse of her cousin, Sam Smith, the body still warm. There were tire marks across the torso of the body. Joelle was arrested on a charge of manslaughter. 
@@ -226,7 +226,7 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     monster: false,
     creature: false,
   };
-} else if (urlParams.has("case2")) {
+} else if (URLPARAMS.has("case2")) {
   caseOverview = `Coffee Served Cold 
 
 Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, when drinking his regular flat white, dropped dead in front of them. After an autopsy, the cause of death was determined as poison. The manager of the cafe, Elliot Ollar, was immediately arrested on a charge of manslaughter.
@@ -317,25 +317,9 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     trust: false,
     honest: false,
   };
-} else if (urlParams.has("case3")) {
-  caseOverview = "";
-  keywords = {
-    alibi: false,
-    laura: false,
-    saracovsky: false,
-  };
-
-  superKeywords = {
-    morning: false,
-    newspaper: false,
-    janet: false,
-  };
-
-  badWords = {
-    jose: false,
-  };
 }
 
+//Robust and expandable function for adding sentences the judge says.
 function sentencePush(
   list1,
   key1,
@@ -346,25 +330,28 @@ function sentencePush(
   targetBool2,
   elseValue,
 ) {
-  const keysArray = Array.isArray(key1) ? key1 : [key1];
-  const isKey1Match = keysArray.some((key) => list1[key] === targetBool);
+  //uses ? for a condensed if statement.
+  const KEYSARRAY = Array.isArray(key1) ? key1 : [key1];
+  // Check if at least one key matches the required boolean condition
+  const KEY1MATCH = KEYSARRAY.some((key) => list1[key] === targetBool);
 
   if (key2 == null) {
-    if (isKey1Match) {
-      sentences.push(sentence);
+    if (KEY1MATCH) {
+      SENTENCES.push(sentence);
     } else {
-      sentences.push(elseValue);
+      SENTENCES.push(elseValue);
     }
   } else {
-    if (isKey1Match && list2[key2] === targetBool2) {
-      sentences.push(sentence);
+    if (KEY1MATCH && list2[key2] === targetBool2) {
+      SENTENCES.push(sentence);
     } else {
-      sentences.push(elseValue);
+      SENTENCES.push(elseValue);
     }
   }
 }
 
 function keywordCheck(list, pointCount, textArray) {
+  //obligatory FOR loop.
   for (const word in list) {
     if (textArray.includes(word)) {
       if (list[word] === false) {
@@ -375,9 +362,11 @@ function keywordCheck(list, pointCount, textArray) {
   }
 }
 
+//wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
+  //show modal and define its' contents (the case)
   document.getElementById("caseFilesPopup").showModal();
-  document.getElementById("popupTitle").textContent = "Case No. " + caseId;
+  document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
   document
     .getElementById("defenseButton")
@@ -385,8 +374,8 @@ document.addEventListener("DOMContentLoaded", () => {
       userPrompt = document.getElementById("defenseEnter").value;
       if (!userPrompt.trim()) return;
       document.getElementById("defenseEnter").value = "";
-      const defenseButton = event.target;
-      defenseButton.disabled = true;
+      const DEFENSEBUTTON = event.target;
+      DEFENSEBUTTON.disabled = true;
       //convert userPrompt to lowercase and then strip of punctuation
       userPrompt = userPrompt.toLowerCase();
       userPrompt = userPrompt.replace(/['"“”`]/g, "");
@@ -400,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       //filter textArray (the split user prompt)
       textArray = textArray.filter(function (el) {
-        return !fluffWords.has(el);
+        return !FLUFFWORDS.has(el);
       });
 
       //check for keywords and turn to true
@@ -409,18 +398,21 @@ document.addEventListener("DOMContentLoaded", () => {
       keywordCheck(superKeywords, 32, textArray);
 
       const filteredArray = textArray.filter(
-        (item) => !wordDictionary.has(item),
+        (item) => !WORDDICTIONARY.has(item),
       );
       console.log(filteredArray);
       //convert textArray back into user prompt
       userPrompt = textArray.join(" ");
       deductionCount = filteredArray.length * 3;
       judgingScore = judgingScore - deductionCount;
-      if (judgingScore >= threshold) {
+      if (judgingScore >= THRESHOLD) {
         keywords.superSecretFoundTheKiller = true;
       }
-      sentences.push(openings[Math.floor(Math.random() * openings.length)]);
-      if (urlParams.has("case1")) {
+      //select an opening sentence randomly.
+      SENTENCES.push(OPENINGS[Math.floor(Math.random() * OPENINGS.length)]);
+
+      //Use url tags to define cases.
+      if (URLPARAMS.has("case1")) {
         sentencePush(
           badWords,
           [
@@ -499,7 +491,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "earrings",
             "crown",
             "jewelry",
-            "crown",
             "coveted",
             "missing",
             "collection",
@@ -532,7 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
           true,
           "Your arguments haven't convinced me. I have found Joelle Smith guilty of manslaughter.",
         );
-      } else if (urlParams.has("case2")) {
+      } else if (URLPARAMS.has("case2")) {
         sentencePush(
           badWords,
           [
@@ -611,33 +602,30 @@ document.addEventListener("DOMContentLoaded", () => {
           true,
           "Your arguments haven't convinced me. I have found Elliot Ollar guilty of manslaughter.",
         );
-      } else if (urlParams.has("case3")) {
-        sentencePush(
-          keywords,
-          ["alibi"],
-          "His alibi... It does seem strange.",
-          true,
-          null,
-          null,
-          null,
-          "His alibi seems sound.",
-        );
       } else {
         console.log("ERROR: NO CASES SELECTED");
       }
-
-      if (judgingScore >= threshold) {
+      //calculate the win conditions.
+      if (judgingScore >= THRESHOLD) {
         console.log("DEBUG: You win.");
         document.body.style.backgroundImage = "url('sprite/judgePass.png')";
+        document.getElementById("caseFilesPopup").showModal();
+        document.getElementById("popupTitle").textContent = "You Win!";
+        document.getElementById("popupText").textContent =
+          "Congratulations on completing this case!";
       } else {
         console.log("DEBUG: You lose.");
         document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
+        document.getElementById("caseFilesPopup").showModal();
+        document.getElementById("popupTitle").textContent = "You Lose!";
+        document.getElementById("popupText").textContent =
+          "Oop! Click the restart button to try again.";
       }
-      //the judge final response
-      console.log(sentences.join(" "));
-      console.log(wordDictionary);
+      //the judge's final response
+      console.log(SENTENCES.join(" "));
+      console.log(WORDDICTIONARY);
       console.log(judgingScore);
       document.getElementById("judgeResponse").textContent =
-        sentences.join(" ");
+        SENTENCES.join(" ");
     });
 });

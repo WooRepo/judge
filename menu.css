@@ -1,44 +1,54 @@
-.caseFiles {
-  position: absolute;
-  top: 70vh;
-  left: 9vw;
-  font-size: 27px;
+body,
+p,
+h2,
+.caseFiles,
+.defenseEnter {
   font-family: Helvetica, Arial, sans-serif;
-  width: 16vw;
-  height: 140px;
-  border-width: 2.1px;
-  color: rgb(0, 0, 0);
-  border-color: rgba(2, 2, 2, 1);
-  background-color: white;
-  transition: all 0.3s;
+}
+
+*:focus {
   outline: none;
 }
 
-.caseFiles:hover {
+button,
+.caseFiles {
+  border: 2.1px solid rgb(2, 2, 2);
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+button:hover,
+.caseFiles:hover,
+.defenseButton:hover,
+.judgeResponse:hover {
   transform: scale(1.2);
 }
 
 body {
   background-image: url("sprite/finalsprite.png");
   background-repeat: no-repeat;
-  transition: background-image 0.5s;
   background-size: cover;
-  outline: none;
+  transition: background-image 0.5s ease;
+}
+
+.caseFiles {
+  position: absolute;
+  top: 70vh;
+  left: 9vw;
+  width: 16vw;
+  height: 140px;
+  font-size: 27px;
 }
 
 .defenseEnter {
-  width: 50vw;
-  height: 18vh;
   position: absolute;
   top: 70vh;
   left: 40vw;
-  transition: all 0.3s;
+  width: 50vw;
+  height: 18vh;
   font-size: 18px;
-  font-family: Helvetica, Arial, sans-serif;
-  outline: none;
-  border-width: 2.1px;
-  border-color: black;
-  outline: none;
+  border: 2.1px solid #000000;
 }
 
 .defenseButton {
@@ -47,34 +57,37 @@ body {
   left: 40vw;
   width: 40vh;
   height: 30px;
-  transition: all 0.3s;
-  background-color: white;
-  outline: none;
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
 }
 
-.defenseButton:hover {
-  transform: scale(1.2);
+.judgeResponse {
+  width: 35%;
+  margin-top: 4%;
+  margin-left: 60%;
+  background-color: #ffffff;
+  border: 2.1px solid rgb(2, 2, 2);
+  font-size: 20px;
+  transition: transform 0.5s ease;
 }
 
-p {
-  font-family: Helvetica, Arial, sans-serif;
+.backButton,
+.restartButton {
+  position: absolute;
+  left: 5%;
+  width: 160px;
+  height: 90px;
+  background-color: #ffffff;
+  border: 2.1px solid rgb(2, 2, 2);
+  font-size: 20px;
+  transition: transform 0.5s ease;
 }
 
-h2 {
-  font-family: Helvetica, Arial, sans-serif;
+.backButton {
+  top: 20%;
 }
-
-button {
-  border-width: 2.1px;
-  color: rgb(0, 0, 0);
-  background-color: white;
-  border-color: rgba(2, 2, 2, 1);
-  transition: all 0.3s;
-  outline: none;
-}
-
-button:hover {
-  transform: scale(1.2);
+.restartButton {
+  top: 50%;
 }
 
 #caseFilesPopup::backdrop {
@@ -84,41 +97,25 @@ button:hover {
 dialog {
   max-width: 70%;
   animation: breath 8s ease-in-out infinite;
-  outline: none;
-}
-
-@keyframes breath {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: rotate(1deg);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  75% {
-    transform: rotate(-1deg);
-  }
-  100% {
-    transform: scale(1);
-  }
+  will-change: transform;
 }
 
 #popupText {
   white-space: pre-wrap;
 }
 
-.judgeResponse {
-  border-style: solid;
-  font-size: 20px;
-  width: 35%;
-  margin-left: 60%;
-  background-color: white;
-  margin-top: 4%;
-  transition: all 0.5s;
-}
-
-.judgeResponse:hover {
-  transform: scale(1.2);
+@keyframes breath {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.025) rotate(1deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.025) rotate(-1deg);
+  }
 }

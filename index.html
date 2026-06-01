@@ -10,17 +10,17 @@
   </head>
   <body>
     <img src="sprite\logo.png" alt="CHAT JPT">
-    <button class="case1" id="case1">Open Case 1</button>
+    <button type="button" class="case1" id="case1">Open Case 1</button>
         <script>
-          const case1Button = document.getElementById('case1');
-          case1Button.addEventListener('click', function() {
+          const CASE1BUTTON = document.getElementById('case1');
+          CASE1BUTTON.addEventListener('click', function() {
               window.location.href = `judgemenu.html?case1`;
           });
          </script>
-    <button class="case2" id="case2">Open Case 2</button>
+    <button type="button" class="case2" id="case2">Open Case 2</button>
     <script>
-      const case2Button = document.getElementById('case2');
-      case2Button.addEventListener('click', function() {
+      const CASE2BUTTON = document.getElementById('case2');
+      CASE2BUTTON.addEventListener('click', function() {
           window.location.href = `judgemenu.html?case2`;
       });
       </script>
