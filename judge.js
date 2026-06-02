@@ -45,17 +45,17 @@ const OPENINGS = [
 if (URLPARAMS.has("case1")) {
   caseOverview = `The Case of the Missing Ear
 
-Police arrived late last night 12/3/26 at the house of Joelle Smith after a neighbour heard a scream. The police found Joelle bent over the lifeless corpse of her cousin, Sam Smith, the body still warm. There were tire marks across the torso of the body. Joelle was arrested on a charge of manslaughter. 
+Police arrived late last night 12/3/26 at the house of Joelle Smith after a neighbour heard a scream. The police found Joelle bent over the lifeless corpse of her cousin, Sam Smith, the body still warm. There were tyre marks across the torso of the body. Joelle was arrested on a charge of manslaughter. 
 
-As Joelle’s lawyer, you can sense this case is not what it seems and they need your help to prove their innocence. Here is what you have found out.
- 
+As Joelle’s lawyer, you can sense this case is not what it seems and she needs your help to prove her innocence. Here is what you have found out.
+
 According to Joelle, last night she backed her car into her driveway as usual, after a long day at work. She says she arrived home just as the eleven o'clock news bulletin just started on the radio. When reaching the top of the drive, Joelle heard a crunch from under her car wheels. She got out and saw a body beneath her car. It was her cousin Sam! Initially, as she thought she had killed him she he was so shocked she couldn’t speak. Joelle stated she was still staring at the body when the police arrived. As they arrested her she saw them removing Sam’s body and she noticed that one of his ears had been cleanly cut off.
 
 According to the police statement the worried neighbour, Mrs. Park called the police at 10:50pm. She stated she "heard a scream come from the house next door, which I recognised as Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
 
 Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, who shares my love of beautiful things, I leave to my beloved nephew, Sam who is like a son to me. However it will be held by my close friend and jeweler, Mr. Steven Rockmouth, until my nephew reaches 21 and is of sound maturity to receive it.”
 
-Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweler at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The will reading will take place on his estate.
+Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweler at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The Will Reading is to take place on his estate.
 
 Attendance List at the Will Reading of Mr. Ronald Smith:
 Ms. Joelle Smith — daughter; Mrs. Beatrice Smith — Sister; Mr. Sam Smith — nephew; Mrs. Rhonda Carlyle — sister; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — niece; Mrs. Jasmine Park — Friend; Mr. Charlie Pearl — Friend; Mr. Steven Rockmouth - Friend; 
@@ -229,6 +229,7 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
 } else if (URLPARAMS.has("case2")) {
   caseOverview = `Coffee Served Cold 
 
+
 Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, when drinking his regular flat white, dropped dead in front of them. After an autopsy, the cause of death was determined as poison. The manager of the cafe, Elliot Ollar, was immediately arrested on a charge of manslaughter.
 
 As Elliot’s lawyer, you can sense this case is not what it seems and they need your help to prove their innocence. Here is what you have found out.
@@ -244,8 +245,11 @@ Advert in “A guide to Littlegrove: The rundown on NZ’s sleepiest little city
 The Bloody Paw loans and debt collection service. Absolute discretion and privacy guaranteed. 
 
 Cell phone tower data at the time of Mr Pearl’s death revealed the following messages:
+
 SMS +64 22 894 4971: You have already ruined me… I have nothing left to give you.
+
 SMS +64 21 765 8436: We were clear, you need to keep paying up. A debt is a debt. We need the rest of the money today or your throat gets cut.
+
 SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye - you‘ll get what’s coming to you.
 `;
   keywords = {
