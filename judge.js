@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
       textArray = textArray.filter(function (el) {
         return !FLUFFWORDS.has(el);
       });
-
+      console.log(textArray)
       //check for keywords and turn to true
       keywordCheck(keywords, 6, textArray);
       keywordCheck(badWords, -6, textArray);
@@ -616,7 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("caseFilesPopup").showModal();
         document.getElementById("popupTitle").textContent = "You Win!";
         document.getElementById("popupText").textContent =
-          "Congratulations on completing this case!";
+          "Congratulations on completing this case!";      
       } else {
         console.log("DEBUG: You lose.");
         document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
