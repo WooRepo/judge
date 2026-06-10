@@ -366,6 +366,13 @@ function keywordCheck(list, pointCount, textArray) {
   }
 }
 
+document
+    .getElementById("defenseButton")
+    .addEventListener("click", (event) => {
+    document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
+    document.getElementById("popupText").textContent = caseOverview;
+    });
+
 //wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
   //show modal and define its' contents (the case)
