@@ -367,7 +367,7 @@ function keywordCheck(list, pointCount, textArray) {
 }
 
 document
-    .getElementById("defenseButton")
+    .getElementById("okButton")
     .addEventListener("click", (event) => {
     document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
     document.getElementById("popupText").textContent = caseOverview;
