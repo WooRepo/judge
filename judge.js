@@ -28,6 +28,7 @@ const CASEID = Math.random().toString(36); // Generates a unique case reference 
 const THRESHOLD = 180;
 let deductionCount = 0;
 let judgingScore = 0;
+const gameComplete = false
 // Uses sets for optimisation (they search faster than arrays.)
 const FLUFFWORDS = new Set(fluffData);
 const WORDDICTIONARY = new Set(wordsData);
@@ -364,6 +365,10 @@ function keywordCheck(list, pointCount, textArray) {
       }
     }
   }
+}
+
+while (gameComplete == true) {
+  // code block to be executed
 }
 
 document
