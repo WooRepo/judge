@@ -364,6 +364,7 @@ function gameCompletion() {
     element.style.transform = "scale(1.5)";
     element.style.outline = "3px dotted black";
     element.style.outlineOffset = "4px";
+    document.getElementById("defenseEnter").disabled = true;
   }
 }
 
@@ -386,7 +387,7 @@ document.getElementById("okButton").addEventListener("click", (event) => {
 
 //wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
-  //show modal and define its' contents (the case)
+  //show modal and define it's contents (the case)
   document.getElementById("caseFilesPopup").showModal();
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
