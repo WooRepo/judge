@@ -19,6 +19,7 @@ import fluffData from "./json/fluffWords.json" with { type: "json" };
 import wordsData from "./json/wordsFull.json" with { type: "json" };
 
 // Constants and other variables
+let complete = false;
 let caseOverview = "";
 let keywords = {};
 let superKeywords = {};
@@ -354,6 +355,18 @@ function sentencePush(
   }
 }
 
+const element = document.getElementById("restartButton");
+
+function gameCompletion() {
+  const element = document.getElementById("restartButton");
+  if (element) {
+    element.style.backgroundColor = "green";
+    element.style.transform = "scale(1.5)";
+    element.style.outline = "3px dotted black";
+    element.style.outlineOffset = "4px";
+  }
+}
+
 function keywordCheck(list, pointCount, textArray) {
   //obligatory FOR loop.
   for (const word in list) {
@@ -366,12 +379,10 @@ function keywordCheck(list, pointCount, textArray) {
   }
 }
 
-document
-    .getElementById("okButton")
-    .addEventListener("click", (event) => {
-    document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
-    document.getElementById("popupText").textContent = caseOverview;
-    });
+document.getElementById("okButton").addEventListener("click", (event) => {
+  document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
+  document.getElementById("popupText").textContent = caseOverview;
+});
 
 //wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
@@ -402,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
       textArray = textArray.filter(function (el) {
         return !FLUFFWORDS.has(el);
       });
-      console.log(textArray)
+      console.log(textArray);
       //check for keywords and turn to true
       keywordCheck(keywords, 6, textArray);
       keywordCheck(badWords, -6, textArray);
@@ -623,7 +634,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("caseFilesPopup").showModal();
         document.getElementById("popupTitle").textContent = "You Win!";
         document.getElementById("popupText").textContent =
-          "Congratulations on completing this case!";      
+          "Congratulations on completing this case!";
+        complete = true;
+        gameCompletion();
       } else {
         console.log("DEBUG: You lose.");
         document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
@@ -631,6 +644,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("popupTitle").textContent = "You Lose!";
         document.getElementById("popupText").textContent =
           "Oop! Click the restart button to try again.";
+        complete = true;
+        gameCompletion();
       }
       //the judge's final response
       console.log(SENTENCES.join(" "));
