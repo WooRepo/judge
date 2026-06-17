@@ -43,7 +43,7 @@ const OPENINGS = [
   "I am a reasoning model of the highest calibre. If your client is lying, I will be able to tell.",
 ];
 //define the cases, and the different tiers of keywords for each.
-if (URLPARAMS.has("case1")) {
+if (URLPARAMS.has("case1")) { //Case 1
   caseOverview = `The Case of the Missing Ear
 
 Police arrived late last night 12/3/26 at the house of Joelle Smith after a neighbour heard a scream. The police found Joelle bent over the lifeless corpse of her cousin, Sam Smith, the body still warm. There were tyre marks across the torso of the body. Joelle was arrested on a charge of manslaughter. 
@@ -65,7 +65,7 @@ Article of Note: The Ear of Littlegrove (Rockmouth Jewelers, 4/5/84). This magni
 
 Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tahiti for the past week, and this has been verified by police. However the Police have revealed his last text message sent 3/3/26 4:30pm +64 22 243 3790: SMS. “Ronald was a great man… Let us meet at Littlegrove Cafe at 6pm and you will receive your package. We will have to be quick, as I have a plane to catch”.
 `;
-  keywords = {
+  keywords = { //list of Keywords for case 1.
     neighbor: false,
     neighbors: false,
     ronald: false,
@@ -132,10 +132,10 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     march: false,
     2016: false,
     16: false,
-    superSecretFoundTheKiller: false,
+    superSecretFoundTheKiller: false, //secret keyword for checking if they hit the score threshhold for revealing the killer.
   };
 
-  superKeywords = {
+  superKeywords = { //list of SuperKeywords for case 1.
     jasmine: false,
     honor: false,
     park: false,
@@ -176,7 +176,7 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     list: false,
   };
 
-  badWords = {
+  badWords = { //list of badwords for case 1.
     beatrice: false,
     felix: false,
     rosa: false,
@@ -227,9 +227,8 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     monster: false,
     creature: false,
   };
-} else if (URLPARAMS.has("case2")) {
+} else if (URLPARAMS.has("case2")) { //casefiles for case 2
   caseOverview = `Coffee Served Cold 
-
 
 Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, when drinking his regular flat white, dropped dead in front of them. After an autopsy, the cause of death was determined as poison. The manager of the cafe, Elliot Ollar, was immediately arrested on a charge of manslaughter.
 
@@ -253,7 +252,7 @@ SMS +64 21 765 8436: We were clear, you need to keep paying up. A debt is a debt
 
 SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye - you‘ll get what’s coming to you.
 `;
-  keywords = {
+  keywords = { //keywords for case 2.
     glass: false,
     magnifying: false,
     necklace: false,
@@ -277,7 +276,7 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     superSecretFoundTheKiller: false,
   };
 
-  superKeywords = {
+  superKeywords = { //superkeywords for case 2.
     sms: false,
     magnifying: false,
     alibi: false,
@@ -293,7 +292,7 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     carlyle: false,
   };
 
-  badWords = {
+  badWords = { //badwords for case 2
     ghost: false,
     phantom: false,
     spirit: false,
@@ -355,9 +354,7 @@ function sentencePush(
   }
 }
 
-const element = document.getElementById("restartButton");
-
-function gameCompletion() {
+function gameCompletion() { //function to disable the text input box once game is completed, and urge the user towards the restart button.
   const element = document.getElementById("restartButton");
   if (element) {
     element.style.backgroundColor = "green";
@@ -380,7 +377,7 @@ function keywordCheck(list, pointCount, textArray) {
   }
 }
 
-document.getElementById("okButton").addEventListener("click", (event) => {
+document.getElementById("okButton").addEventListener("click", (event) => { //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
 });
@@ -388,10 +385,10 @@ document.getElementById("okButton").addEventListener("click", (event) => {
 //wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
   //show modal and define it's contents (the case)
-  document.getElementById("caseFilesPopup").showModal();
+  document.getElementById("caseFilesPopup").showModal(); 
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
-  document
+  document //the logic for processing the users response.
     .getElementById("defenseButton")
     .addEventListener("click", (event) => {
       userPrompt = document.getElementById("defenseEnter").value;
@@ -401,8 +398,8 @@ document.addEventListener("DOMContentLoaded", () => {
       DEFENSEBUTTON.disabled = true;
       //convert userPrompt to lowercase and then strip of punctuation
       userPrompt = userPrompt.toLowerCase();
-      userPrompt = userPrompt.replace(/['"“”`]/g, "");
-      userPrompt = userPrompt.replace(
+      userPrompt = userPrompt.replace(/['"“”`]/g, ""); //replace all of the characters with nothing for processing.
+      userPrompt = userPrompt.replace(  //replace all of the characters with a space for processing.
         /[\.,-\/#!$%\^&\*;:{}=\-_~()@\+\?><\[\]]/g,
         " ",
       );
@@ -631,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //calculate the win conditions.
       if (judgingScore >= THRESHOLD) {
         console.log("DEBUG: You win.");
-        document.body.style.backgroundImage = "url('sprite/judgePass.png')";
+        document.body.style.backgroundImage = "url('sprite/judgePass.png')"; //change judge look.
         document.getElementById("caseFilesPopup").showModal();
         document.getElementById("popupTitle").textContent = "You Win!";
         document.getElementById("popupText").textContent =
@@ -640,7 +637,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gameCompletion();
       } else {
         console.log("DEBUG: You lose.");
-        document.body.style.backgroundImage = "url('sprite/judgeAngry.png')";
+        document.body.style.backgroundImage = "url('sprite/judgeAngry.png')"; //change judge look.
         document.getElementById("caseFilesPopup").showModal();
         document.getElementById("popupTitle").textContent = "You Lose!";
         document.getElementById("popupText").textContent =
