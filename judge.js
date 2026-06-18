@@ -29,6 +29,7 @@ const CASEID = Math.random().toString(36); // Generates a unique case reference 
 const THRESHOLD = 180;
 let deductionCount = 0;
 let judgingScore = 0;
+const AUDIO = new Audio('sprite/theme.wav');
 // Uses sets for optimisation (they search faster than arrays.)
 const FLUFFWORDS = new Set(fluffData);
 const WORDDICTIONARY = new Set(wordsData);
@@ -380,6 +381,7 @@ function keywordCheck(list, pointCount, textArray) {
 document.getElementById("okButton").addEventListener("click", (event) => { //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
+  AUDIO.play();
 });
 
 //wait until DOM content is loaded to stop things getting out of sync.
@@ -646,8 +648,8 @@ document.addEventListener("DOMContentLoaded", () => {
         gameCompletion();
       }
       //the judge's final response
-      console.log(SENTENCES.join(" "));
-      console.log(WORDDICTIONARY);
+      console.log(SENTENCES.join(" ")); //join up the sentence array.
+      console.log(WORDDICTIONARY); //logged the wordlist (to test it worked)
       console.log(judgingScore);
       document.getElementById("judgeResponse").textContent =
         SENTENCES.join(" ");
