@@ -6,8 +6,30 @@ Charles Stanford
 Max Book
 
 
-One one fateful day, Billie Bouthors,
- the manager of a nuclear power plant was found dead. Her bloody body was found in her office, slouched over a open computer. The biggest suspect is their secretary, Finn Bartle. Finn has hired you to defend them in court. Here is the evidence that you have gathered: 
+On Friday, the 4/6/27, a Billie Bouthors, the manager of a nuclear power plant was found dead. Her bloody body was found in her office, slouched over a open computer. The biggest suspect is their secretary, Finn Bartle. Finn has hired you to defend them in court. Here is the evidence that you have gathered: 
 
 Office Cleanup Schedule!
 Do your bit for the management office by cleaning up after lunch on your designated day.
+Monday: Daiyi and Joe
+Tuesday: Finn
+Wednesday: Charles and Asher
+Thursday: Billie
+Friday: Max
+
+Witness report from senior manager Max Book:
+I came into the office today to find a mess of papers still left on my desk. I thought, shouldn't Billie have cleaned these up yesterday. I gazed around the room and realised that the room was still covered in rubbish, except for two desks down the far left side of the room. I thought, oh well! It's my day to clean up, might as well get the office prepped.
+
+Notes: 
+A nuclear fuel rod was discovered underneath Billie's desk. 
+Order of desks: Asher, Joe, Finn, Daiyi, Charles, Billie, Max.
+An autopsy report found that Billie was killed with blunt force trauma to back of the head.
+
+Email correspondance to asherwilliams@ecofuel.com 
+MIME-Version: 1.0
+Received: by 10.220.191.194 with HTTP; Wed, 11 May 2011 12:27:12 -0700 (PDT)
+Date: Wed, 11 May 2011 13:27:12 -0600
+Delivered-To: asherwilliams@ecofuel.com, joemorris@ecofuel.com
+Subject: Test
+From: anon <anonsecret@gmail.com>
+To: asherwilliams@ecofuel.com, joemorris@ecofuel.com
+Content-Type: multipart/mixed;
