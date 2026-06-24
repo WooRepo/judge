@@ -356,23 +356,23 @@ function sentencePush(
 }
 
 function gameCompletion() { //function to disable the text input box once game is completed, and urge the user towards the restart button.
-  const element = document.getElementById("restartButton");
-  if (element) {
-    element.style.backgroundColor = "green";
-    element.style.transform = "scale(1.5)";
-    element.style.outline = "3px dotted black";
-    element.style.outlineOffset = "4px";
+  const ELEMENT = document.getElementById("restartButton");
+  if (ELEMENT) {
+    ELEMENT.style.backgroundColor = "green";
+    ELEMENT.style.transform = "scale(1.5)";
+    ELEMENT.style.outline = "3px dotted black";
+    ELEMENT.style.outlineOffset = "4px";
     document.getElementById("defenseEnter").disabled = true;
   }
 }
 
 function keywordCheck(list, pointCount, textArray) {
   //obligatory FOR loop.
-  for (const word in list) {
-    if (textArray.includes(word)) {
-      if (list[word] === false) {
+  for (const WORD in list) {
+    if (textArray.includes(WORD)) {
+      if (list[WORD] === false) {
         judgingScore += pointCount;
-        list[word] = true;
+        list[WORD] = true;
       }
     }
   }
@@ -381,6 +381,8 @@ function keywordCheck(list, pointCount, textArray) {
 document.getElementById("okButton").addEventListener("click", (event) => { //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
+  AUDIO.loop=true; //loop audio
+  console.log("Audio playing.")
   AUDIO.play();
 });
 
@@ -419,13 +421,13 @@ document.addEventListener("DOMContentLoaded", () => {
       keywordCheck(badWords, -6, textArray);
       keywordCheck(superKeywords, 32, textArray);
 
-      const filteredArray = textArray.filter(
+      const FILTEREDARRAY = textArray.filter(
         (item) => !WORDDICTIONARY.has(item),
       );
-      console.log(filteredArray);
+      console.log(FILTEREDARRAY);
       //convert textArray back into user prompt
       userPrompt = textArray.join(" ");
-      deductionCount = filteredArray.length * 3;
+      deductionCount = FILTEREDARRAY.length * 3;
       judgingScore = judgingScore - deductionCount;
       if (judgingScore >= THRESHOLD) {
         keywords.superSecretFoundTheKiller = true;
