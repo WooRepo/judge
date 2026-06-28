@@ -10,7 +10,7 @@
     <title>CHATJPT</title>
   </head>
   <body>
-    <img src="sprite\logo.png" alt="CHAT JPT">
+    <img src="sprite/logo.png" alt="CHAT JPT">
     <button type="button" class="case1" id="case1">Open Case 1</button>
         <script>
           const CASE1BUTTON = document.getElementById('case1');
@@ -23,6 +23,13 @@
       const CASE2BUTTON = document.getElementById('case2');
       CASE2BUTTON.addEventListener('click', function() {
           window.location.href = `judgemenu.html?case2`;
+      });
+      </script>
+      <button type="button" class="case3" id="case3">Open Case 3</button>
+    <script>
+      const CASE3BUTTON = document.getElementById('case3');
+      CASE3BUTTON.addEventListener('click', function() {
+          window.location.href = `judgemenu.html?case3`;
       });
       </script>
         <dialog class="tutorialPopup" id="tutorialPopup">

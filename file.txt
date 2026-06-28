@@ -1,12 +1,4 @@
-Billie Bouthors was beaten to death by a person wielding a nuclear fuel rod. Found dead in local nuclear plant. Asher Williams and Joe Morris killed her.
-
-Daiyi Isbister 
-Finn Bartle. 
-Charles Stanford 
-Max Book
-
-
-On Friday, the 4/6/27, a Billie Bouthors, the manager of a nuclear power plant was found dead. Her bloody body was found in her office, slouched over a open computer. The biggest suspect is their secretary, Finn Bartle. Finn has hired you to defend them in court. Here is the evidence that you have gathered: 
+On Friday, the 4/6/27, a Billie Bouthors, the manager of the EcoFuel power plant was found dead. Her bloody body was found in her office, slouched over a open computer. The biggest suspect is their secretary, Finn Bartle. Finn has hired you to defend them in court. Here is the evidence that you have gathered: 
 
 Office Cleanup Schedule!
 Do your bit for the management office by cleaning up after lunch on your designated day.
@@ -22,14 +14,23 @@ I came into the office today to find a mess of papers still left on my desk. I t
 Notes: 
 A nuclear fuel rod was discovered underneath Billie's desk. 
 Order of desks: Asher, Joe, Finn, Daiyi, Charles, Billie, Max.
-An autopsy report found that Billie was killed with blunt force trauma to back of the head.
+An autopsy report found that Billie was killed with blunt force trauma to back of the head and has been dead for some time.
 
-Email correspondance to asherwilliams@ecofuel.com 
+Finn and Billie has a massive fight on Wednesday over pay. 
+
+Absences timeline:
+Monday: No Absences 
+Tuesday: No Absences 
+Wednesday: No Absences 
+Thursday: Finn Bartle (Ill)
+Friday: 
+
+An email was found in the office's servers. The names were encrypted however, and every letter in each name was replaced with ?.
 MIME-Version: 1.0
-Received: by 10.220.191.194 with HTTP; Wed, 11 May 2011 12:27:12 -0700 (PDT)
-Date: Wed, 11 May 2011 13:27:12 -0600
-Delivered-To: asherwilliams@ecofuel.com, joemorris@ecofuel.com
-Subject: Test
-From: anon <anonsecret@gmail.com>
-To: asherwilliams@ecofuel.com, joemorris@ecofuel.com
+Received: Thurs, 3/6/27 12:27:48 (NZST)
+Date: Thurs, 3/6/27 12:27:12 (NZST)
+Delivered-To: ?????@ecofuel.com, ???@ecofuel.com
+Subject: What you did.
+From: ??????@gmail.com
 Content-Type: multipart/mixed;
+I know that you have been stealing. Did you really think I wouldn't notice that you have been skimming off the top. I have left my findings on your desk. I expect your resignation by tommorow.

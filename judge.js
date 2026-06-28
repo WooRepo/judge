@@ -29,7 +29,7 @@ const CASEID = Math.random().toString(36); // Generates a unique case reference 
 const THRESHOLD = 180;
 let deductionCount = 0;
 let judgingScore = 0;
-const AUDIO = new Audio('sprite/theme.wav');
+const AUDIO = new Audio("sprite/theme.wav");
 // Uses sets for optimisation (they search faster than arrays.)
 const FLUFFWORDS = new Set(fluffData);
 const WORDDICTIONARY = new Set(wordsData);
@@ -44,7 +44,8 @@ const OPENINGS = [
   "I am a reasoning model of the highest calibre. If your client is lying, I will be able to tell.",
 ];
 //define the cases, and the different tiers of keywords for each.
-if (URLPARAMS.has("case1")) { //Case 1
+if (URLPARAMS.has("case1")) {
+  //Case 1
   caseOverview = `The Case of the Missing Ear
 
 Police arrived late last night 12/3/26 at the house of Joelle Smith after a neighbour heard a scream. The police found Joelle bent over the lifeless corpse of her cousin, Sam Smith, the body still warm. There were tyre marks across the torso of the body. Joelle was arrested on a charge of manslaughter. 
@@ -55,18 +56,19 @@ According to Joelle, last night she backed her car into her driveway as usual, a
 
 According to the police statement the worried neighbour, Mrs. Park called the police at 10:50pm. She stated she "heard a scream come from the house next door, which I recognised as Joelle. I immediately called the police. I was friends with the old owner of the house, Mr. Ron Smith, before his passing. Ever since his daughter and that damn cousin moved in, I haven’t really had much to do with them."
 
-Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, I leave to my beloved nephew, who shares my love of beautiful things, Sam. He is like a son to me. However it will be held by my close friend and jeweler, Mr. Steven Rockmouth, until my nephew reaches 21 and is of sound maturity to receive it.”
+Excerpt from the will of Mr. Ronald E. Smith: “My greatest treasure, I leave to my beloved nephew, who shares my love of beautiful things, Sam. He is like a son to me. However it will be held by my close friend and jeweller, Mr. Steven Rockmouth, until my nephew reaches 21 and is of sound maturity to receive it.”
 
-Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweler at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The Will Reading is to take place on his estate.
+Excerpt from the obituary of Mr. Ronald E. Smith: A much-loved father, husband, uncle, and friend, Mr. Ronald Smith passed away in his house on Thursday, the 12th of March 2016. A hardworking banker, but a jeweller at heart, Mr. Smith will be sorely missed. Details of his death will not be disclosed at this time. The Will Reading is to take place on his estate.
 
 Attendance List at the Will Reading of Mr. Ronald Smith:
 Ms. Joelle Smith — daughter; Mrs. Beatrice Smith — Sister; Mr. Sam Smith — nephew; Mrs. Rhonda Carlyle — sister; Mr. Felix Carlyle — Family; Ms. Rosa Samuel — niece; Mrs. Jasmine Park — Friend; Mr. Charlie Pearl — Friend; Mr. Steven Rockmouth - Friend; 
 
-Article of Note: The Ear of Littlegrove (Rockmouth Jewelers, 4/5/84). This magnificent earring has been missing for decades and is one of the most coveted pieces of jewelry in existence. It vanished in the early 60s and is presumably in the collection of a wealthy collector. If any jeweler were to possess it, it would be the crown jewel of their collection.
+Article of Note: The Ear of Littlegrove (Rockmouth Jewellers, 4/5/84). This magnificent earring has been missing for decades and is one of the most coveted pieces of jewelry in existence. It vanished in the early 60s and is presumably in the collection of a wealthy collector. If any jeweller were to possess it, it would be the crown jewel of their collection.
 
 Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tahiti for the past week, and this has been verified by police. However the Police have revealed his last text message sent 3/3/26 4:30pm +64 22 243 3790: SMS. “Ronald was a great man… Let us meet at Littlegrove Cafe at 6pm and you will receive your package. We will have to be quick, as I have a plane to catch”.
 `;
-  keywords = { //list of Keywords for case 1.
+  keywords = {
+    //list of Keywords for case 1.
     neighbor: false,
     neighbors: false,
     ronald: false,
@@ -136,7 +138,8 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     superSecretFoundTheKiller: false, //secret keyword for checking if they hit the score threshhold for revealing the killer.
   };
 
-  superKeywords = { //list of SuperKeywords for case 1.
+  superKeywords = {
+    //list of SuperKeywords for case 1.
     jasmine: false,
     honor: false,
     park: false,
@@ -171,13 +174,14 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     steven: false,
     expert: false,
     appraiser: false,
-    jeweler: false,
+    jeweller: false,
     attendance: false,
     present: false,
     list: false,
   };
 
-  badWords = { //list of badwords for case 1.
+  badWords = {
+    //list of badwords for case 1.
     beatrice: false,
     felix: false,
     rosa: false,
@@ -228,7 +232,8 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     monster: false,
     creature: false,
   };
-} else if (URLPARAMS.has("case2")) { //casefiles for case 2
+} else if (URLPARAMS.has("case2")) {
+  //casefiles for case 2
   caseOverview = `Coffee Served Cold 
 
 Customers at the Littlegrove Cafe were shocked on Wednesday when the elusive local millionaire, a Mr. Charlie Pearl, when drinking his regular flat white, dropped dead in front of them. After an autopsy, the cause of death was determined as poison. The manager of the cafe, Elliot Ollar, was immediately arrested on a charge of manslaughter.
@@ -253,7 +258,8 @@ SMS +64 21 765 8436: We were clear, you need to keep paying up. A debt is a debt
 
 SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye - you‘ll get what’s coming to you.
 `;
-  keywords = { //keywords for case 2.
+  keywords = {
+    //keywords for case 2.
     glass: false,
     magnifying: false,
     necklace: false,
@@ -277,14 +283,15 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     superSecretFoundTheKiller: false,
   };
 
-  superKeywords = { //superkeywords for case 2.
+  superKeywords = {
+    //superkeywords for case 2.
     sms: false,
     magnifying: false,
     alibi: false,
     argument: false,
     rockmouth: false,
     steven: false,
-    jeweler: false,
+    jeweller: false,
     jewellers: false,
     racket: false,
     commotion: false,
@@ -293,7 +300,8 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     carlyle: false,
   };
 
-  badWords = { //badwords for case 2
+  badWords = {
+    //badwords for case 2
     ghost: false,
     phantom: false,
     spirit: false,
@@ -321,6 +329,134 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     believe: false,
     trust: false,
     honest: false,
+  };
+} else if (URLPARAMS.has("case3")) {
+  //casefiles for case 3
+  caseOverview = `The Case of the Messy Office:
+On Friday 4/6/27 the police were called to the head offices of EcoFuel Power after an office
+manager, Billy Bouthors had been found murdered. Her bloody body was found slumped
+over her open computer by Daiyi Isbister when he arrived for work. Finn Bartle, her
+secretary was arrested for murder. As their lawyer, you can sense this case is not what it
+seems and they need your help to prove their innocence. Here is the evidence that you have
+gathered: 
+The EcoFuel head office is an open plan mezzanine level overlooking the power plant below.
+The CEO, John Cave believes orderliness and cleanliness are the most important factors in
+efficiency and productivity. He regularly reminds his staff of &quot;tidy desks, tidy minds&quot; to
+promote an organised workspace and clear, stress-free thinking, insisting on daily desk
+checks for all EcoFuel employees. 
+
+There are eight desks in the office in sets of two. The
+office employees sit in the following order Asher, Joe, Finn, Daiyi, Charles, Billie, Max.
+A nuclear fuel rod was discovered underneath Billie&#39;s desk.
+
+Forensic investigations found blood splatters and hair. An autopsy report found that Billie was killed with blunt force
+trauma to the back of the head and has been dead for some time.
+
+Charles Stanford reported the office cleaning schedule had been started by Billie as a money
+saving venture and to please John Cave. Finn and Billie had a massive fight on Wednesday
+because Finn had left an open tin of tuna in the bin under their desk and the whole office
+smelt of fish.
+
+Office Cleanup Schedule! Tidy Minds!: Do your bit to help EcoFuel success by tidying the
+office on you designated day.
+Monday: Daiyi and Joe
+Tuesday: Finn
+Wednesday: Charles and Asher
+Thursday: Billie
+Friday: Max
+Witness report from senior manager Max Book:
+I came into the office today to find yesterday’s production reports and sweet wrappers still
+on my desk. I thought, shouldn&#39;t someone have tidied these up? Looking around the room I
+realised that no one had done the cleaning last night and the bins needed emptying. I
+thought, oh well! It's my day to tidy, I might as well get the office prepped and help up keep
+up productivity ! I noticed the two desks down the far left side of the room already looked
+clean of papers.
+Staff Absence:
+Monday: No Absences 
+Tuesday: Charles Stanford (dentist appointment)
+Wednesday: No Absences 
+Thursday: Finn Bartle (sick)
+Friday:
+
+An email was found on the office's server. The names in the address lines were encrypted
+however, with every letter being replaced with ?
+MIME-Version: 1.0
+Received: Thurs, 3/6/27 12:27:48 (NZST)
+Date: Thurs, 3/6/27 12:27:12 (NZST)
+Delivered-To: ?????@ecofuel.com, ???@ecofuel.com
+Subject: What you did.
+From: ??????@gmail.com
+Content-Type: multipart/mixed;
+I know that you have been stealing from EcoFuel. Did you really think I wouldn't notice that
+you two have been skimming off the top. I have left my findings on your desks. I expect your
+resignations by tomorrow.
+`;
+  keywords = {
+    tuna: false,
+    fish: false,
+    bin: false,
+    schedule: false,
+    cleaning: false,
+    reports: false,
+    wrappers: false,
+    papers: false,
+    computer: false,
+    server: false,
+    stole: false,
+    stealing: false,
+    skimming: false,
+    rod: false,
+    fuel: false,
+    nuclear: false,
+    superSecretFoundTheKiller: false,
+  };
+
+  superKeywords = {
+    alibi: false,
+    sick: false,
+    absent: false,
+    thursday: false,
+    email: false,
+    encrypted: false,
+    letters: false,
+    spotless: false,
+    clean: false,
+    left: false,
+    desks: false,
+    asher: false,
+    joe: false,
+  };
+
+  badWords = {
+    ghost: false,
+    phantom: false,
+    spirit: false,
+    specter: false,
+    zombie: false,
+    curse: false,
+    alien: false,
+    aliens: false,
+    monster: false,
+    stabbed: false,
+    stabbing: false,
+    knife: false,
+    blade: false,
+    gun: false,
+    shot: false,
+    shooting: false,
+    bullet: false,
+    strangled: false,
+    suffocated: false,
+    logic: false,
+    obviously: false,
+    clearly: false,
+    swear: false,
+    promise: false,
+    believe: false,
+    trust: false,
+    honest: false,
+    poison: false,
+    poisoned: false,
   };
 }
 
@@ -355,7 +491,8 @@ function sentencePush(
   }
 }
 
-function gameCompletion() { //function to disable the text input box once game is completed, and urge the user towards the restart button.
+function gameCompletion() {
+  //function to disable the text input box once game is completed, and urge the user towards the restart button.
   const ELEMENT = document.getElementById("restartButton");
   if (ELEMENT) {
     ELEMENT.style.backgroundColor = "green";
@@ -378,18 +515,19 @@ function keywordCheck(list, pointCount, textArray) {
   }
 }
 
-document.getElementById("okButton").addEventListener("click", (event) => { //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
+document.getElementById("okButton").addEventListener("click", (event) => {
+  //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
-  AUDIO.loop=true; //loop audio
-  console.log("Audio playing.")
+  AUDIO.loop = true; //loop audio
+  console.log("Audio playing.");
   AUDIO.play();
 });
 
 //wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
   //show modal and define it's contents (the case)
-  document.getElementById("caseFilesPopup").showModal(); 
+  document.getElementById("caseFilesPopup").showModal();
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
   document.getElementById("popupText").textContent = caseOverview;
   document //the logic for processing the users response.
@@ -403,7 +541,8 @@ document.addEventListener("DOMContentLoaded", () => {
       //convert userPrompt to lowercase and then strip of punctuation
       userPrompt = userPrompt.toLowerCase();
       userPrompt = userPrompt.replace(/['"“”`]/g, ""); //replace all of the characters with nothing for processing.
-      userPrompt = userPrompt.replace(  //replace all of the characters with a space for processing.
+      userPrompt = userPrompt.replace(
+        //replace all of the characters with a space for processing.
         /[\.,-\/#!$%\^&\*;:{}=\-_~()@\+\?><\[\]]/g,
         " ",
       );
@@ -625,6 +764,87 @@ document.addEventListener("DOMContentLoaded", () => {
           "superSecretFoundTheKiller",
           true,
           "Your arguments haven't convinced me. I have found Elliot Ollar guilty of manslaughter.",
+        );
+      } else if (URLPARAMS.has("case3")) {
+        sentencePush(
+          badWords,
+          [
+            "ghost",
+            "phantom",
+            "spirit",
+            "specter",
+            "zombie",
+            "curse",
+            "alien",
+            "aliens",
+            "monster",
+            "stabbed",
+            "stabbing",
+            "knife",
+            "blade",
+            "gun",
+            "shot",
+            "shooting",
+            "bullet",
+            "strangled",
+            "suffocated",
+            "logic",
+            "obviously",
+            "clearly",
+            "swear",
+            "promise",
+            "believe",
+            "trust",
+            "honest",
+            "poison",
+            "poisoned",
+          ],
+          "Hmm. Let's keep to the facts.",
+          true,
+          null,
+          null,
+          null,
+          "<PROCESSING>.",
+        );
+        sentencePush(
+          keywords,
+          ["skimming", "stealing", "stole"],
+          "The email server confirms an internal theft operation was occurring at EcoFuel.",
+          true,
+          superKeywords,
+          "email",
+          true,
+          "The motive of any other possible criminals remains unclear based on your presentation.",
+        );
+        sentencePush(
+          superKeywords,
+          ["schedule", "cleaning", "spotless", "clean"],
+          "Max Book observed that the two desks on the far left side were already spotless on Friday morning.",
+          true,
+          null,
+          null,
+          null,
+          "There is nothing wrong with the crime scene.",
+        );
+        sentencePush(
+          superKeywords,
+          ["sick", "absent", "thursday", "alibi"],
+          "Finn Bartle was recorded as sick on Thursday, giving him a valid alibi for the time of the cleanup.",
+          true,
+          null,
+          null,
+          null,
+          "Finn Bartle's whereabouts during the cleanup window are unaccounted for.",
+        );
+        sentencePush(
+          superKeywords,
+          ["asher", "joe", "left", "desks"],
+          "The pieces fit perfectly. The two clean desks belonged to Asher and Joe, meaning they performed the cleaning shift out of order on Thursday night to cover up the crime scene! They were the ones skimming fuel rods, and they eliminated Billie when she exposed them in her email.",
+          true,
+          keywords,
+          "superSecretFoundTheKiller",
+          true,
+          "Your arguments haven't convinced me. I have found Finn Bartle guilty of murder.",
         );
       } else {
         console.log("ERROR: NO CASES SELECTED");
