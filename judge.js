@@ -334,7 +334,7 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
   //casefiles for case 3
   caseOverview = `The Case of the Messy Office:
 On Friday 4/6/27 the police were called to the head offices of EcoFuel Power after an office
-manager, Billy Bouthors had been found murdered. Her bloody body was found slumped
+manager, Billie Bouthors had been found murdered. Her bloody body was found slumped
 over her open computer by Daiyi Isbister when he arrived for work. Finn Bartle, her
 secretary was arrested for murder. As their lawyer, you can sense this case is not what it
 seems and they need your help to prove their innocence. Here is the evidence that you have
@@ -347,7 +347,7 @@ checks for all EcoFuel employees.
 
 There are eight desks in the office in sets of two. The
 office employees sit in the following order Asher, Joe, Finn, Daiyi, Charles, Billie, Max.
-A nuclear fuel rod was discovered underneath Billie&#39;s desk.
+A nuclear fuel rod was discovered underneath Billie's desk.
 
 Forensic investigations found blood splatters and hair. An autopsy report found that Billie was killed with blunt force
 trauma to the back of the head and has been dead for some time.
@@ -366,7 +366,7 @@ Thursday: Billie
 Friday: Max
 Witness report from senior manager Max Book:
 I came into the office today to find yesterday’s production reports and sweet wrappers still
-on my desk. I thought, shouldn&#39;t someone have tidied these up? Looking around the room I
+on my desk. I thought, shouldn't someone have tidied these up? Looking around the room I
 realised that no one had done the cleaning last night and the bins needed emptying. I
 thought, oh well! It's my day to tidy, I might as well get the office prepped and help up keep
 up productivity ! I noticed the two desks down the far left side of the room already looked
