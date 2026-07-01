@@ -171,6 +171,7 @@ Mr. Rockmouth is unavailable for an interview as he has been at a wedding in Tah
     postmortem: false,
     surgical: false,
     rockmouth: false,
+    rockmouths: false,
     steven: false,
     expert: false,
     appraiser: false,
@@ -290,6 +291,7 @@ SMS +64 22 894 4971:  I have nothing, you leave me no choice. An eye for an eye 
     alibi: false,
     argument: false,
     rockmouth: false,
+    rockmouths: false,
     steven: false,
     jeweller: false,
     jewellers: false,
@@ -558,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       console.log(textArray);
       //check for keywords and turn to true
-      keywordCheck(keywords, 6, textArray);
+      keywordCheck(keywords, 20, textArray);
       keywordCheck(badWords, -6, textArray);
       keywordCheck(superKeywords, 32, textArray);
 
@@ -670,7 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         sentencePush(
           superKeywords,
-          ["rockmouth", "steven"],
+          ["rockmouth", "rockmouths", "steven"],
           "Steven Rockmouth couldn't have done it. He was in Tahiti...",
           true,
           null,
@@ -760,7 +762,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         sentencePush(
           superKeywords,
-          ["steven", "rockmouth", "tall"],
+          ["steven", "rockmouth", "rockmouths", "tall"],
           "The Tall Man. It all makes sense now. Steven was in debt to the Bloody Paw and they forced him to close his jewelry shop for good, so he went to the top of the organization, Charlie Pearl, and took them out for revenge.",
           true,
           keywords,
