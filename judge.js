@@ -26,7 +26,7 @@ let superKeywords = {};
 let badWords = {};
 const URLPARAMS = new URLSearchParams(window.location.search);
 const CASEID = Math.random().toString(36); // Generates a unique case reference ID (For immersion).
-const THRESHOLD = 150;
+const THRESHOLD = 200;
 let deductionCount = 0;
 let judgingScore = 0;
 const AUDIO = new Audio("sprite/theme.wav");
@@ -341,7 +341,7 @@ seems and they need your help to prove their innocence. Here is the evidence tha
 gathered: 
 The EcoFuel head office is an open plan mezzanine level overlooking the power plant below.
 The CEO, John Cave believes orderliness and cleanliness are the most important factors in
-efficiency and productivity. He regularly reminds his staff of &quot;tidy desks, tidy minds&quot; to
+efficiency and productivity. He regularly reminds his staff of ""tidy desks, tidy minds" to
 promote an organised workspace and clear, stress-free thinking, insisting on daily desk
 checks for all EcoFuel employees. 
 
@@ -358,7 +358,7 @@ because Finn had left an open tin of tuna in the bin under their desk and the wh
 smelt of fish.
 
 Office Cleanup Schedule! Tidy Minds!: Do your bit to help EcoFuel success by tidying the
-office on you designated day.
+office on your designated day.
 Monday: Daiyi and Joe
 Tuesday: Finn
 Wednesday: Charles and Asher
@@ -515,17 +515,19 @@ function keywordCheck(list, pointCount, textArray) {
   }
 }
 
-document.getElementById("okButton").addEventListener("click", (event) => {
-  //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
-  document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
-  document.getElementById("popupText").textContent = caseOverview;
-  AUDIO.loop = true; //loop audio
-  console.log("Audio playing.");
-  AUDIO.play();
-});
-
 //wait until DOM content is loaded to stop things getting out of sync.
 document.addEventListener("DOMContentLoaded", () => {
+  let wonCase = false;
+  document.getElementById("okButton").addEventListener("click", (event) => {
+    //to make sure the case file is always set to the correct thing, I set it to that whenever the OK button is clicked at the end of the modal.
+    document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
+    document.getElementById("popupText").textContent = caseOverview;
+    AUDIO.loop = true; //loop audio
+    console.log("Audio playing.");
+    AUDIO.play().catch((error) =>
+      console.log("Audio playback blocked.", error),
+    );
+  });
   //show modal and define it's contents (the case)
   document.getElementById("caseFilesPopup").showModal();
   document.getElementById("popupTitle").textContent = "Case No. " + CASEID;
@@ -686,6 +688,7 @@ document.addEventListener("DOMContentLoaded", () => {
           true,
           "Your arguments haven't convinced me. I have found Joelle Smith guilty of manslaughter.",
         );
+        if (judgingScore >= THRESHOLD) wonCase = true;
       } else if (URLPARAMS.has("case2")) {
         sentencePush(
           badWords,
@@ -765,6 +768,7 @@ document.addEventListener("DOMContentLoaded", () => {
           true,
           "Your arguments haven't convinced me. I have found Elliot Ollar guilty of manslaughter.",
         );
+        if (judgingScore >= THRESHOLD) wonCase = true;
       } else if (URLPARAMS.has("case3")) {
         sentencePush(
           badWords,
@@ -846,11 +850,12 @@ document.addEventListener("DOMContentLoaded", () => {
           true,
           "Your arguments haven't convinced me. I have found Finn Bartle guilty of murder.",
         );
+        if (judgingScore >= THRESHOLD) wonCase = true;
       } else {
         console.log("ERROR: NO CASES SELECTED");
       }
       //calculate the win conditions.
-      if (judgingScore >= THRESHOLD) {
+      if (wonCase === true) {
         console.log("DEBUG: You win.");
         document.body.style.backgroundImage = "url('sprite/judgePass.png')"; //change judge look.
         document.getElementById("caseFilesPopup").showModal();
